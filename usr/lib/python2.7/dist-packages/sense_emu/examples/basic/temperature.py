@@ -1,0 +1,1 @@
+../../../../../../share/pyshared/sense_emu/examples/basic/temperature.py

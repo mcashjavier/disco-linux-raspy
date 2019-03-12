@@ -1,0 +1,61 @@
+==============================================================================
+#            README for debian-reference (Version 2 series)                  #
+#                    Sun, 22 Dec 2013 05:18:42 +0000                         #
+#                    Osamu Aoki, osamu at debian dot org                     #
+==============================================================================
+
+Thank you installing debian-reference (DR).
+
+This family of documentation packages have their contents in:
+
+  /usr/share/doc/debian-reference-common/README          (this file)
+  /usr/share/debian-reference/*                          (main contents)
+  /usr/share/pixmaps/debian-reference.png                (icons)
+
+These are used by /usr/bin/debian-reference command.
+
+== BUGS ==
+
+If you find any issues or shortcomings of this DR, please file bug reports
+using the "reportbug" command against the "debian-reference" package.
+ $ reportbug --src debian-reference
+
+For bug reports, it is strongly recommended to write what you want as
+alternative.  "It does not work...", "I can do this...", etc. are not so
+useful.  An explicit statement such as "The section 9.3.3 should be rewritten
+as ...." is desiarable style.  (I do not wish to spend time to guess/search
+where you see issues.)
+
+For simple grammar errors and spell errors, diff -u against plain text file or
+the source file are most appreciated.
+
+See also, http://bugs.debian.org for how Debian BTS works.
+
+Of course, updating Debian DDP git repository by joining the alioth Debian
+documentation (ddp) project https://alioth.debian.org/projects/ddp/ is most
+appreciated.  Please also contact us at the Debian documentation project
+<debian-doc@lists.debian.org> .
+
+Translation for German is partial and translations for many other languages
+are missing.  Your help of creating and updating is most appreciated.
+
+Due to bugs in the tool chain for PDF generation, PDF files are missing.  If
+you find solutions to this problem, please file bugs with patch to the
+pertinent tool chain packages.
+
+== SOURCE ==
+
+This source is maintained in the alioth ddp debian-reference git repository as
+indicated in the Vcs-Git and Vcs-Browse control fields.
+ $ git clone git://anonscm.debian.org/ddp/debian-reference.git
+
+For how to update this package, see README.source.  You can see it at:
+ http://anonscm.debian.org/gitweb/?p=ddp/debian-reference.git;a=blob;f=README.source
+
+The latest relesed source package can be downloaded by:
+ $ apt-get source debian-reference
+Here, deb-src line in /etc/apt/sources.list should be pointing to unstable.
+
+Osamu
+
+# vim: set tw=78 sts=2 ai expandtab:

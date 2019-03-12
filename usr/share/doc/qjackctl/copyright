@@ -1,0 +1,44 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: qjackctl
+Upstream-Contact: Rui Nuno Capela <rncbc@rncbc.org>
+Source: http://sourceforge.net/projects/qjackctl/files/
+Copyright: 2003-2014 rncbc aka Rui Nuno Capela
+
+Files: *
+Copyright:
+  2003-2014 Rui Nuno Capela <rncbc@rncbc.org>
+License: GPL-2+
+
+Files:
+ src/qjackctlInterfaceComboBox.cpp
+ src/qjackctlInterfaceComboBox.h
+Copyright:
+ 2003-2013 Rui Nuno Capela <rncbc@rncbc.org>
+ 2013, Arnout Engelen
+License: GPL-2+
+
+Files: debian/*
+Copyright:
+ 2009 Gürkan Sengün <gurkan@phys.ethz.ch>
+ 2009 Free Ekanayaka <freee@debian.org>
+ 2010-2013 Adrian Knoth <adi@drcomp.erfurt.thur.de>
+ 2010-2014 Alessio Treglia <alessio@debian.org>
+ 2014 Jaromír Mikeš <mira.mikes@seznam.cz>
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.

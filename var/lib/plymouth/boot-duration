@@ -1,0 +1,34 @@
+0.007:plymouth-start.service
+0.711:systemd-fsck-root.service
+0.718:systemd-remount-fs.service
+0.724:systemd-rfkill@rfkill0.service
+0.725:systemd-random-seed.service
+0.735:systemd-fsck@dev-mmcblk0p1.service
+0.738:boot.mount
+0.752:systemd-tmpfiles-setup.service
+0.759:Configuring network interfaces
+0.765:Setting console screen modes
+0.774:systemd-update-utmp.service
+0.783:kbd.service
+0.790:Setting up console font and keymap
+0.791:raspi-config.service
+0.810:networking.service
+0.812:ifup@wlan0.service
+0.825:console-setup.service
+0.838:cron.service
+0.864:avahi-daemon.service
+0.864:dbus.service
+0.873:rsyslog.service
+0.878:dhcpcd.service
+0.888:triggerhappy.service
+0.900:vncserver-x11-serviced.service
+0.930:systemd-user-sessions.service
+0.938:Starting advanced IEEE 802.11 management
+0.941:ssh.service
+0.943:iot.service
+0.943:Starting NTP server
+0.945:rc-local.service
+0.949:var-swap.swap
+0.950:dphys-swapfile.service
+0.951:systemd-logind.service
+0.957:ntp.service

@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/input.py

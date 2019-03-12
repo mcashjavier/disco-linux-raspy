@@ -1,0 +1,34 @@
+/usr/share/themes/PiX/gtk-2.0/gtkrc:1287: Invalid symbolic color 'bar_bg_color'
+/usr/share/themes/PiX/gtk-2.0/gtkrc:1287: error: invalid identifier 'bar_bg_color', expected valid identifier
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkLabel.halign
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkMenuBar.halign
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkTable.margin-left
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkTable.margin-right
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkTable.margin-top
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkHBox.margin-left
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkHBox.margin-right
+
+(pi-greeter:1055): Gtk-WARNING **: Unknown property: GtkHBox.margin-bottom
+
+** (pi-greeter:1055): WARNING **: Error getting user list from org.freedesktop.Accounts: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Accounts was not provided by any .service files
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_set_sensitive: assertion 'GTK_IS_WIDGET (widget)' failed
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_set_sensitive: assertion 'GTK_IS_WIDGET (widget)' failed
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_get_visible: assertion 'GTK_IS_WIDGET (widget)' failed
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_get_visible: assertion 'GTK_IS_WIDGET (widget)' failed
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_get_visible: assertion 'GTK_IS_WIDGET (widget)' failed
+
+(pi-greeter:1055): Gtk-CRITICAL **: IA__gtk_widget_get_visible: assertion 'GTK_IS_WIDGET (widget)' failed
+
+** (pi-greeter:1055): CRITICAL **: lightdm_greeter_respond: assertion 'priv->n_responses_waiting > 0' failed

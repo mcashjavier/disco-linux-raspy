@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sense_emu &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Sense-Emu 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for sense_emu</h1><div class="highlight"><pre>
+<span class="c"># vim: set et sw=4 sts=4 fileencoding=utf-8:</span>
+<span class="c">#</span>
+<span class="c"># Raspberry Pi Sense HAT Emulator library for the Raspberry Pi</span>
+<span class="c"># Copyright (c) 2016 Raspberry Pi Foundation &lt;info@raspberrypi.org&gt;</span>
+<span class="c">#</span>
+<span class="c"># This package is free software; you can redistribute it and/or modify it under</span>
+<span class="c"># the terms of the GNU Lesser General Public License as published by the Free</span>
+<span class="c"># Software Foundation; either version 2.1 of the License, or (at your option)</span>
+<span class="c"># any later version.</span>
+<span class="c">#</span>
+<span class="c"># This package is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="c"># ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span>
+<span class="c"># FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more</span>
+<span class="c"># details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c"># along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;</span>
+
+<span class="s">&quot;The Raspberry Pi Sense HAT Emulator library&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">unicode_literals</span><span class="p">,</span>
+    <span class="n">absolute_import</span><span class="p">,</span>
+    <span class="n">print_function</span><span class="p">,</span>
+    <span class="n">division</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">.sense_hat</span> <span class="kn">import</span> <span class="n">SenseHat</span><span class="p">,</span> <span class="n">SenseHat</span> <span class="k">as</span> <span class="n">AstroPi</span>
+<span class="kn">from</span> <span class="nn">.stick</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SenseStick</span><span class="p">,</span>
+    <span class="n">InputEvent</span><span class="p">,</span>
+    <span class="n">DIRECTION_UP</span><span class="p">,</span>
+    <span class="n">DIRECTION_DOWN</span><span class="p">,</span>
+    <span class="n">DIRECTION_LEFT</span><span class="p">,</span>
+    <span class="n">DIRECTION_RIGHT</span><span class="p">,</span>
+    <span class="n">DIRECTION_MIDDLE</span><span class="p">,</span>
+    <span class="n">ACTION_PRESSED</span><span class="p">,</span>
+    <span class="n">ACTION_RELEASED</span><span class="p">,</span>
+    <span class="n">ACTION_HELD</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">__project__</span>      <span class="o">=</span> <span class="s">&#39;sense-emu&#39;</span>
+<span class="n">__version__</span>      <span class="o">=</span> <span class="s">&#39;1.0&#39;</span>
+<span class="n">__author__</span>       <span class="o">=</span> <span class="s">&#39;Raspberry Pi Foundation&#39;</span>
+<span class="n">__author_email__</span> <span class="o">=</span> <span class="s">&#39;info@raspberrypi.org&#39;</span>
+<span class="n">__url__</span>          <span class="o">=</span> <span class="s">&#39;http://sense-emu.readthedocs.io/&#39;</span>
+<span class="n">__platforms__</span>    <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ALL&#39;</span><span class="p">]</span>
+
+<span class="n">__classifiers__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;Development Status :: 5 - Production/Stable&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Environment :: Console&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Environment :: X11 Applications :: GTK&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Intended Audience :: Developers&#39;</span><span class="p">,</span>
+    <span class="s">&#39;License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)&#39;</span><span class="p">,</span>
+    <span class="s">&#39;License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Operating System :: POSIX :: Linux&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Operating System :: MacOS :: MacOS X&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Operating System :: Microsoft :: Windows&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 2.7&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.2&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.3&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.4&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.5&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Topic :: Scientific/Engineering&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+<span class="n">__keywords__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;raspberrypi&#39;</span><span class="p">,</span> <span class="s">&#39;sense&#39;</span><span class="p">,</span> <span class="s">&#39;hat&#39;</span>
+    <span class="p">]</span>
+
+<span class="n">__requires__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;numpy&#39;</span><span class="p">,</span> <span class="s">&#39;Pillow&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+<span class="n">__extra_requires__</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;doc&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="s">&#39;sphinx&#39;</span><span class="p">],</span>
+    <span class="s">&#39;test&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s">&#39;pytest&#39;</span><span class="p">,</span> <span class="s">&#39;coverage&#39;</span><span class="p">,</span> <span class="s">&#39;mock&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="c"># Particular versions are required for Python 3.2 compatibility</span>
+    <span class="n">__extra_requires__</span><span class="p">[</span><span class="s">&#39;doc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+        <span class="s">&#39;Jinja2&lt;2.7&#39;</span><span class="p">,</span>
+        <span class="s">&#39;MarkupSafe&lt;0.16&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
+    <span class="n">__extra_requires__</span><span class="p">[</span><span class="s">&#39;test&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;coverage&lt;4.0dev&#39;</span>
+
+<span class="n">__entry_points__</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&#39;sense_rec = sense_emu.record:app&#39;</span><span class="p">,</span>
+        <span class="s">&#39;sense_play = sense_emu.play:app&#39;</span><span class="p">,</span>
+        <span class="s">&#39;sense_csv = sense_emu.dump:app&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="s">&#39;gui_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&#39;sense_emu_gui = sense_emu.gui:main&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Sense-Emu 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

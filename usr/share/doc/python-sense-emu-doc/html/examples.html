@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Examples &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="Sense HAT API" href="api.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Sense HAT API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="examples">
+<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Sense HAT emulator exactly mirrors the official Sense HAT API. The only
+difference (required because both the emulator and actual library can be
+installed simultaneously on a Pi) is the name: <tt class="docutils literal"><span class="pre">sense_emu</span></tt> instead of
+<tt class="docutils literal"><span class="pre">sense_hat</span></tt>. It is recommended to import the library in the following
+manner at the top of your code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+</pre></div>
+</div>
+<p>Then, when you want to change your code to run on the actual HAT all you need
+do is change this line to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_hat</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+</pre></div>
+</div>
+<p>To run your scripts under the emulator, first start the emulator application,
+then start your script.</p>
+<p>Several example scripts, with varying degrees of difficulty, are available from
+the <em class="menuselection">File ‣ Open example</em> menu within the emulator. Selecting
+an example from this menu will open it in Python&#8217;s IDLE environment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The example will be opened directly from the installation. To edit the
+example for your own purposes, use <em class="menuselection">File ‣ Save As</em> in
+IDLE to save the file under your home directory (e.g. <tt class="file docutils literal"><span class="pre">/home/pi</span></tt>).</p>
+</div>
+<p>A selection of example scripts is given in the following sections.</p>
+</div>
+<div class="section" id="temperature">
+<h2>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h2>
+<p>Displays the current temperature reading on the Sense HAT&#8217;s screen:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+
+<span class="n">sense</span> <span class="o">=</span> <span class="n">SenseHat</span><span class="p">()</span>
+
+<span class="n">red</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">sense</span><span class="o">.</span><span class="n">temp</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">red</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">temp</span> <span class="k">else</span> <span class="n">blue</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+    <span class="n">sense</span><span class="o">.</span><span class="n">set_pixels</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="humidity">
+<h2>Humidity<a class="headerlink" href="#humidity" title="Permalink to this headline">¶</a></h2>
+<p>Displays the current humidity reading on the Sense HAT&#8217;s screen:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+
+<span class="n">sense</span> <span class="o">=</span> <span class="n">SenseHat</span><span class="p">()</span>
+
+<span class="n">green</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">white</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">humidity</span> <span class="o">=</span> <span class="n">sense</span><span class="o">.</span><span class="n">humidity</span>
+    <span class="n">humidity_value</span> <span class="o">=</span> <span class="mi">64</span> <span class="o">*</span> <span class="n">humidity</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">green</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">humidity_value</span> <span class="k">else</span> <span class="n">white</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+    <span class="n">sense</span><span class="o">.</span><span class="n">set_pixels</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="joystick">
+<h2>Joystick<a class="headerlink" href="#joystick" title="Permalink to this headline">¶</a></h2>
+<p>Scrolls a blip around the Sense HAT&#8217;s screen in response to joystick motions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python3</span>
+<span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">hat</span> <span class="o">=</span> <span class="n">SenseHat</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">update_screen</span><span class="p">():</span>
+    <span class="n">hat</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">hat</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clamp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">move_dot</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;pressed&#39;</span><span class="p">,</span> <span class="s">&#39;held&#39;</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">clamp</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">{</span>
+            <span class="s">&#39;left&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;right&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">clamp</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="p">{</span>
+            <span class="s">&#39;up&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;down&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">update_screen</span><span class="p">()</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">get_events</span><span class="p">():</span>
+        <span class="n">move_dot</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">update_screen</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>An alternative way to write this example using the joystick&#8217;s event handler
+attributes is given below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+<span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">pause</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">hat</span> <span class="o">=</span> <span class="n">SenseHat</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">update_screen</span><span class="p">():</span>
+    <span class="n">hat</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">hat</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clamp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">move_dot</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;pressed&#39;</span><span class="p">,</span> <span class="s">&#39;held&#39;</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">clamp</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">{</span>
+            <span class="s">&#39;left&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;right&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">clamp</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="p">{</span>
+            <span class="s">&#39;up&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;down&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">update_screen</span><span class="p">()</span>
+<span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">direction_up</span> <span class="o">=</span> <span class="n">move_dot</span>
+<span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">direction_down</span> <span class="o">=</span> <span class="n">move_dot</span>
+<span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">direction_left</span> <span class="o">=</span> <span class="n">move_dot</span>
+<span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">direction_right</span> <span class="o">=</span> <span class="n">move_dot</span>
+<span class="n">hat</span><span class="o">.</span><span class="n">stick</span><span class="o">.</span><span class="n">direction_any</span> <span class="o">=</span> <span class="n">update_screen</span>
+<span class="n">pause</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rainbow">
+<h2>Rainbow<a class="headerlink" href="#rainbow" title="Permalink to this headline">¶</a></h2>
+<p>Scrolls a rainbow of colours across the Sense HAT&#8217;s pixels:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">colorsys</span> <span class="kn">import</span> <span class="n">hsv_to_rgb</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+
+<span class="c"># Hues represent the spectrum of colors as values between 0 and 1. The range</span>
+<span class="c"># is circular so 0 represents red, ~0.2 is yellow, ~0.33 is green, 0.5 is cyan,</span>
+<span class="c"># ~0.66 is blue, ~0.84 is purple, and 1.0 is back to red. These are the initial</span>
+<span class="c"># hues for each pixel in the display.</span>
+<span class="n">hues</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span>
+    <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">,</span>
+    <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span>
+    <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span>
+    <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span>
+    <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">,</span>
+    <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">,</span>
+    <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>
+    <span class="p">]</span>
+
+<span class="n">hat</span> <span class="o">=</span> <span class="n">SenseHat</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="c"># Rotate the hues</span>
+    <span class="n">hues</span> <span class="o">=</span> <span class="p">[(</span><span class="n">h</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">%</span> <span class="mf">1.0</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hues</span><span class="p">]</span>
+    <span class="c"># Convert the hues to RGB values</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">hsv_to_rgb</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hues</span><span class="p">]</span>
+    <span class="c"># hsv_to_rgb returns 0..1 floats; convert to ints in the range 0..255</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="p">[(</span><span class="n">scale</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">scale</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">scale</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">]</span>
+    <span class="c"># Update the display</span>
+    <span class="n">hat</span><span class="o">.</span><span class="n">set_pixels</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.04</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#temperature">Temperature</a></li>
+<li><a class="reference internal" href="#humidity">Humidity</a></li>
+<li><a class="reference internal" href="#joystick">Joystick</a></li>
+<li><a class="reference internal" href="#rainbow">Rainbow</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">Sense HAT API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/examples.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Sense HAT API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

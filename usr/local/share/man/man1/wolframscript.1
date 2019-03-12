@@ -1,0 +1,257 @@
+.ad l
+.TH wolframscript 1 \"May 2016\" \"Wolfram Research\"
+.hy
+.SH NAME
+.PP
+wolframscript \- command-line script interpreter for Wolfram Language
+.SH SYNOPSIS
+.PP
+wolframscript -code \f[I]code\f[] [-cloud [\f[I]cloudbase\f[]]] [-local [\f[I]kernelpath\f[]] [\f[I]arg\f[]\*<1\*> ...]
+.PP
+wolframscript -file \f[I]file\f[]|\f[I]url\f[] [-cloud \f[I]cloudbase\f[]] [-local [\f[I]kernelpath\f[]]] [\f[I]arg\f[]\*<1\*> ...]
+.PP
+wolframscript -api \f[I]url\f[]|\f[I]uuid\f[]|\f[I]file\f[] [-cloud [\f[I]cloudbase\f[]]] [-local [\f[I]kernelpath\f[]]] [-args \f[I]key\f[]=\f[I]value\f[] ...]
+.PP
+wolframscript -function \f[I]code\f[] [-cloud [\f[I]cloudbase\f[]]] [-local [-\f[I]kernelpath\f[]]] [-signature \f[I]type\f[] ...] [-args \f[I]values\f[] ...]
+.SH DESCRIPTION
+.PP
+wolframscript runs Wolfram Language code, functions, and deployed APIs, either locally or in the cloud, allowing input from standard input, command-line arguments, files, URLs, etc. 
+.SH EXAMPLES
+.SS Code from Command Line
+.PP
+Evaluate the Wolfram Language code 2+2 on a local Wolfram Engine:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-code\ 2+2
+4\f[]
+.fi
+.PP
+Evaluate the Wolfram Language code 2+2 in the Wolfram Cloud, prompting for authentication as needed:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-cloud\ \-code\ 2+2
+4\f[]
+.fi
+.PP
+Evaluate Wolfram Language code locally, escaping input for the shell:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-code\ 'StringReverse["hello"]'
+"olleh"\f[]
+.fi
+.PP
+Evaluate code and put the results in a file:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-code\ 'ExportString[Graphics3D[Sphere[\ ]],\ \ \\
+\ \ \ \ \ "PNG"]'\ >\ file.png\f[]
+.fi
+.SS Code from File
+.PP
+Evaluate Wolfram Language code from a file, returning the last result generated:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-file\ test.wl
+12345\f[]
+.fi
+.PP
+Take code from a local file, but run it in the cloud:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-cloud\ \-file\ test.wl
+12345\f[]
+.fi
+.PP
+Take code from a file in the cloud, but run it locally:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-file\ http://wolfr.am/535sxfw4
+12345\f[]
+.fi
+.SS Script Files
+.PP
+A file set up to execute Wolfram Language code locally:
+.IP
+.nf
+\f[C]
+#!wolframscript
+Print[2+2]\f[]
+.fi
+.PP
+Create a file to execute Wolfram Language code in the Wolfram Cloud:
+.IP
+.nf
+\f[C]
+#!wolframscript\ \-cloud
+Print[2+2]\f[]
+.fi
+.PP
+Create a file that uses a command-line argument:
+.IP
+.nf
+\f[C]
+#!wolframscript
+Print[ToExpression[$ScriptCommandLine[[1]]^2]\f[]
+.fi
+.PP
+Create a file giving a function whose arguments come from the command line:
+.IP
+.nf
+\f[C]
+#!wolframscript\ \-function\ \-signature\ City\ City
+Print[GeoDistance[#1,\ #2]]&\f[]
+.fi
+.SS Interactive Operation
+.PP
+Run Wolfram Language in an interactive REPL:
+.IP
+.nf
+\f[C]
+$\ wolframscript
+WolframEngine\ 11.0.0\ for\ Mac\ OS\ X\ x86\ (64\-bit)
+Copyright\ 1988\-2016\ Wolfram\ Research,\ Inc.
+
+In[1]:=\ 2+2
+
+Out[1]=\ 4
+
+In[2]:=\ \f[]
+.fi
+.SS APIs
+.PP
+Run a cloud API:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-api\ https://wolfr.am/bNvKWq2U\ \-args\ x=1\ y=2
+3\f[]
+.fi
+.PP
+Get the code for an API from the cloud, but run the API locally:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-api\ https://wolfr.am/bNvKWq2U\ \-local\ \-args\ x=1\ y=2
+3\f[]
+.fi
+.SS Additional Examples
+.PP
+Reverse the string on each line of an input file, writing the result to another file:
+.IP
+.nf
+\f[C]
+$\ wolframscript\ \-function\ StringReverse\ \-linewise\ <\ file1\ >\ file2\ \f[]
+.fi
+.SH OPTIONS
+.SS Code Options
+.TP
+\f[B]-c, -code \f[I]code\f[]\f[]
+Give Wolfram Language code to execute.
+.TP
+\f[B]-f, -file \f[I]file\f[]\f[]
+Give a file containing Wolfram Language code to execute.
+.TP
+\f[B]-api \f[I]url\f[]|\f[I]uuid\f[]|\f[I]file\f[]\f[]
+Use an API at the specified URL, or coming from a cloud or local object with the specified UUID, or coming from the specified local file. Use arguments \f[I]key\f[]=\f[I]value\f[] ....
+.TP
+\f[B]-fun, -function \f[I]code\f[] [-s|signature \f[I]type\f[] ...] [-args|-- \f[I]value\f[] ...]\f[]
+Use a function whose arguments are the strings \f[I]value\f[] …, interpreted as being of types \f[I]type\f[] …. If no signature is given, all arguments are assumed to be strings. Signature types can be any of \f[B]$InterpreterTypes\f[].
+.SS Execution Options
+.TP
+\f[B]-o, -cloud [\f[I]cloudbase\f[]]\f[]
+Execute code in the cloud, using the specified cloud base. By default, \f[I]cloudbase\f[] is http://wolframcloud.com.
+.TP
+\f[B]-l, -local [\f[I]kernelpath\f[]]\f[]
+Execute code locally, using the specified path to the Wolfram Engine kernel.
+.TP
+\f[B]-format [type]\f[]
+Specify the format in which to give output.
+.TP
+\f[B]-linewise\f[]
+Execute code on each line of standard input that is read.
+.TP
+\f[B]-print [all]\f[]
+When running a script, print the result from executing the last line of the script, or each line if all is given.
+.TP
+\f[B]-timeout \f[I]seconds\f[] [\f[I]value\f[]]\f[]
+Specify the number of seconds to allow for execution. Return \f[I]value\f[] if the time is exceeded.
+.TP
+\f[B]-v, -verbose\f[]
+Print additional information during execution.
+.SS Utility Options
+.TP
+\f[B]-h, -help\f[]
+Print help text.
+.TP
+\f[B]-auth, -authenticate [\f[I]wolframid\f[] [\f[I]password\f[]]] [-cloud \f[I]cloudbase\f[]]\f[]
+Authenticate with the cloud, specifying a particular Wolfram ID and password, and prompting if they are not given. Different authentication can be specified for different clouds.
+.TP
+\f[B]-config, -configure [\f[I]key\f[]=\f[I]value\f[] ...]\f[]
+Configure wolframscript by specifying values for particular configuration variables keys.
+.TP
+\f[B]-disconnect [-cloud \f[I]cloudbase\f[]]\f[]
+Disconnect from the cloud, removing authentication information.
+.SH DETAILS
+.SS Wolfram Language Scripts
+.PP
+All standard options can be used in #!wolframscript scripts.
+.PP
+With #!wolframscript -function ..., each argument to the function can be given on the script command line.
+.PP
+With #!wolframscript -api ..., the parameters of the API can be given on the script command line in the form -key \f[I]value\f[] ....
+.PP
+The exit code from executing a script can be specified using \f[B]Exit\f[][\f[I]code\f[]].
+.PP
+Without -print, no output will be sent to stdout unless this is explicitly done using \f[B]Print\f[][\f[I]expr\f[]].
+.PP
+With the option -print, the result from the last line in the script is sent to stdout.
+.PP
+With the option -print all, results from each line in the script are sent to stdout when they are generated.
+.PP
+The -linewise option can be used to run the script multiple times, taking a single line of stdin as input each time.
+.SS Command-Line Input
+.PP
+Input given to a script on standard input can be accessed in Wolfram Language code using \f[B]$ScriptInputString\f[].
+.PP
+Arguments given on the command line can be accessed using \f[B]$ScriptCommandLine\f[].
+.SS Output Formatting
+.PP
+The default setting for \f[B]TotalWidth\f[] is \f[B]Infinity\f[].
+.SS API Parameters
+.PP
+If an API supports extended parameters such as x-url, x-format, and _timeout, these can be given in wolframscript -api.
+.SS Code Location
+.PP
+In wolframscript -api \f[I]uuid\f[], \f[B]LocalObject\f[]["uuid"] is used if it exists, otherwise \f[B]CloudObject\f[]["uuid"].
+.SH FILES
+.PP
+Configuration file:
+.SH WOLFRAM LANGUAGE VARIABLES
+The following variables are set when wolframscript begins execution.
+.TP
+\f[B]$CommandLine\f[]
+A list of strings giving the complete command line used.
+.TP
+\f[B]$ScriptCommandLine\f[]
+A list of command-line arguments intended for the script being run. These come after options given with -\f[I]option\f[].
+.SH ENVIRONMENT VARIABLES
+.TP
+\f[B]WOLFRAMSCRIPT_AUTHENTICATIONPATH\f[]
+The path to files storing authentication information.
+.TP
+\f[B]WOLFRAMSCRIPT_CONFIGURATIONPATH\f[]
+The path to files storing persistent configuration information.
+.TP
+\f[B]WOLFRAMSCRIPT_CLOUDBASE\f[]
+The default cloud base to use in wolframscript.
+.TP
+\f[B]WOLFRAMSCRIPT_KERNELPATH\f[]
+The path to the default local Wolfram Engine kernel executable.
+ 

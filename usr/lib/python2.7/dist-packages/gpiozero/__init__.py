@@ -1,0 +1,1 @@
+../../../../share/pyshared/gpiozero/__init__.py

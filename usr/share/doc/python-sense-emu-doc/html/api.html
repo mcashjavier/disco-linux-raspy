@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sense HAT API &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="Sense Emulator" href="sense_emu_gui.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_emu_gui.html" title="Sense Emulator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-sense_emu">
+<span id="sense-hat-api"></span><span id="api"></span><h1>Sense HAT API<a class="headerlink" href="#module-sense_emu" title="Permalink to this headline">¶</a></h1>
+<p>The main class which is used to interact with the Sense HAT emulator is
+<a class="reference internal" href="#sense_emu.SenseHat" title="sense_emu.SenseHat"><tt class="xref py py-class docutils literal"><span class="pre">SenseHat</span></tt></a>. This provides accesss to all sensors, the LED pixel display,
+and the joystick. It is recommended that you import the library using the
+following idiom:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_emu</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+</pre></div>
+</div>
+<p>This way, when you wish to deploy your code on an actual Sense HAT the only
+change you need to make is to this line, changing it to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sense_hat</span> <span class="kn">import</span> <span class="n">SenseHat</span>
+</pre></div>
+</div>
+<div class="section" id="sensehat">
+<h2>SenseHat<a class="headerlink" href="#sensehat" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sense_emu.SenseHat">
+<em class="property">class </em><tt class="descclassname">sense_emu.</tt><tt class="descname">SenseHat</tt><big>(</big><em>imu_settings_file=u'RTIMULib'</em>, <em>text_assets=u'sense_hat_text'</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main interface the Raspberry Pi Sense HAT.</p>
+<p>This class provides properties to query the various sensors on the Sense
+HAT (<tt class="xref py py-attr docutils literal"><span class="pre">temp</span></tt>, <tt class="xref py py-attr docutils literal"><span class="pre">pressure</span></tt>, <tt class="xref py py-attr docutils literal"><span class="pre">humidity</span></tt>, <tt class="xref py py-attr docutils literal"><span class="pre">gyro</span></tt>, etc.)
+and methods to control the LED &#8220;screen&#8221; on the HAT (<a class="reference internal" href="#sense_emu.SenseHat.set_pixel" title="sense_emu.SenseHat.set_pixel"><tt class="xref py py-meth docutils literal"><span class="pre">set_pixel()</span></tt></a>,
+<a class="reference internal" href="#sense_emu.SenseHat.set_pixels" title="sense_emu.SenseHat.set_pixels"><tt class="xref py py-meth docutils literal"><span class="pre">set_pixels()</span></tt></a>).</p>
+<p>The <em>imu_settings_file</em> parameter specifies the base name of the
+configuration file used to calibrate the sensors on the HAT. An &#8221;.ini&#8221;
+suffix will be implicitly added to this filename. If a file with the
+resulting name is present in <tt class="file docutils literal"><span class="pre">~/.config/sense_hat</span></tt>, it will be used
+in the configuration.  Otherwise, the file will be located within
+<tt class="file docutils literal"><span class="pre">/etc</span></tt>, and will be copied to <tt class="file docutils literal"><span class="pre">~/.config/sense_hat</span></tt> before use.</p>
+<p>The <em>text_assets</em> parameter provides the base name of the PNG image and
+text file which will be used to define the font used by the
+<a class="reference internal" href="#sense_emu.SenseHat.show_message" title="sense_emu.SenseHat.show_message"><tt class="xref py py-meth docutils literal"><span class="pre">show_message()</span></tt></a> method.</p>
+<dl class="method">
+<dt id="sense_emu.SenseHat.clear">
+<tt class="descname">clear</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the LED matrix with a single colour, default is black / off</p>
+<p>e.g. ap.clear()
+or
+ap.clear(r, g, b)
+or
+colour = (r, g, b)
+ap.clear(colour)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.flip_h">
+<tt class="descname">flip_h</tt><big>(</big><em>redraw=True</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.flip_h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flip LED matrix horizontal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.flip_v">
+<tt class="descname">flip_v</tt><big>(</big><em>redraw=True</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.flip_v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flip LED matrix vertical</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.gamma_reset">
+<tt class="descname">gamma_reset</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.gamma_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the LED matrix gamma correction to default</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_accelerometer">
+<tt class="descname">get_accelerometer</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_accelerometer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the orientation in degrees from the accelerometer only</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_accelerometer_raw">
+<tt class="descname">get_accelerometer_raw</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_accelerometer_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accelerometer x y z raw data in Gs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_compass">
+<tt class="descname">get_compass</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_compass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the direction of North from the magnetometer in degrees</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_compass_raw">
+<tt class="descname">get_compass_raw</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_compass_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Magnetometer x y z raw data in uT (micro teslas)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_gyroscope">
+<tt class="descname">get_gyroscope</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_gyroscope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the orientation in degrees from the gyroscope only</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_gyroscope_raw">
+<tt class="descname">get_gyroscope_raw</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_gyroscope_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gyroscope x y z raw data in radians per second</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_humidity">
+<tt class="descname">get_humidity</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_humidity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the percentage of relative humidity</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_orientation_degrees">
+<tt class="descname">get_orientation_degrees</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_orientation_degrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary object to represent the current orientation
+in degrees, 0 to 360, using the aircraft principal axes of
+pitch, roll and yaw</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_orientation_radians">
+<tt class="descname">get_orientation_radians</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_orientation_radians" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary object to represent the current orientation in
+radians using the aircraft principal axes of pitch, roll and yaw</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_pixel">
+<tt class="descname">get_pixel</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_pixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of [R,G,B] representing the pixel specified by x and y
+on the LED matrix. Top left = 0,0 Bottom right = 7,7</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_pixels">
+<tt class="descname">get_pixels</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list containing 64 smaller lists of <tt class="docutils literal"><span class="pre">[R,G,B]</span></tt> pixels
+representing what is currently displayed on the LED matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_pressure">
+<tt class="descname">get_pressure</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the pressure in Millibars</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_temperature">
+<tt class="descname">get_temperature</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temperature in Celsius</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_temperature_from_humidity">
+<tt class="descname">get_temperature_from_humidity</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_temperature_from_humidity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temperature in Celsius from the humidity sensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.get_temperature_from_pressure">
+<tt class="descname">get_temperature_from_pressure</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.get_temperature_from_pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temperature in Celsius from the pressure sensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.load_image">
+<tt class="descname">load_image</tt><big>(</big><em>file_path</em>, <em>redraw=True</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.load_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a path to an 8 x 8 image file and updates the LED matrix with
+the image</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.set_imu_config">
+<tt class="descname">set_imu_config</tt><big>(</big><em>compass_enabled</em>, <em>gyro_enabled</em>, <em>accel_enabled</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.set_imu_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables and disables the gyroscope, accelerometer and/or magnetometer
+input to the orientation functions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.set_pixel">
+<tt class="descname">set_pixel</tt><big>(</big><em>x</em>, <em>y</em>, <em>*args</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.set_pixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the single <tt class="docutils literal"><span class="pre">[R,G,B]</span></tt> pixel specified by x and y on the LED
+matrix Top left = 0,0 Bottom right = 7,7</p>
+<p>e.g. ap.set_pixel(x, y, r, g, b)
+or
+pixel = (r, g, b)
+ap.set_pixel(x, y, pixel)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.set_pixels">
+<tt class="descname">set_pixels</tt><big>(</big><em>pixel_list</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.set_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a list containing 64 smaller lists of <tt class="docutils literal"><span class="pre">[R,G,B]</span></tt> pixels and
+updates the LED matrix. R,G,B elements must intergers between 0
+and 255</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.set_rotation">
+<tt class="descname">set_rotation</tt><big>(</big><em>r=0</em>, <em>redraw=True</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.set_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the LED matrix rotation for viewing, adjust if the Pi is upside
+down or sideways. 0 is with the Pi HDMI port facing downwards</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.show_letter">
+<tt class="descname">show_letter</tt><big>(</big><em>s, text_colour=[255, 255, 255], back_colour=[0, 0, 0]</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.show_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a single text character on the LED matrix using the specified
+colours</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseHat.show_message">
+<tt class="descname">show_message</tt><big>(</big><em>text_string, scroll_speed=0.1, text_colour=[255, 255, 255], back_colour=[0, 0, 0]</em><big>)</big><a class="headerlink" href="#sense_emu.SenseHat.show_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scrolls a string of text across the LED matrix using the specified
+speed and colours</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseHat.stick">
+<tt class="descname">stick</tt><a class="headerlink" href="#sense_emu.SenseHat.stick" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#sense_emu.SenseStick" title="sense_emu.SenseStick"><tt class="xref py py-class docutils literal"><span class="pre">SenseStick</span></tt></a> object representing the Sense HAT&#8217;s joystick.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sensestick">
+<h2>SenseStick<a class="headerlink" href="#sensestick" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sense_emu.SenseStick">
+<em class="property">class </em><tt class="descclassname">sense_emu.</tt><tt class="descname">SenseStick</tt><a class="headerlink" href="#sense_emu.SenseStick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the joystick on the Sense HAT.</p>
+<dl class="method">
+<dt id="sense_emu.SenseStick.get_events">
+<tt class="descname">get_events</tt><big>(</big><big>)</big><a class="headerlink" href="#sense_emu.SenseStick.get_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all joystick events that have occurred since the last
+call to <a class="reference internal" href="#sense_emu.SenseStick.get_events" title="sense_emu.SenseStick.get_events"><tt class="xref py py-meth docutils literal"><span class="pre">get_events()</span></tt></a>. The list contains events in the order that
+they occurred. If no events have occurred in the intervening time, the
+result is an empty list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sense_emu.SenseStick.wait_for_event">
+<tt class="descname">wait_for_event</tt><big>(</big><em>emptybuffer=False</em><big>)</big><a class="headerlink" href="#sense_emu.SenseStick.wait_for_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits until a joystick event becomes available.  Returns the event, as
+an <a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple.</p>
+<p>If <em>emptybuffer</em> is <tt class="docutils literal"><span class="pre">True</span></tt> (it defaults to <tt class="docutils literal"><span class="pre">False</span></tt>), any pending
+events will be thrown away first. This is most useful if you are only
+interested in &#8220;pressed&#8221; events.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_any">
+<tt class="descname">direction_any</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_any" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick is used. The function can
+either take a parameter which will be the <a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple
+that has occurred, or the function can take no parameters at all.</p>
+<p>This event will always be called <em>after</em> events associated with a
+specific action. Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being
+fired.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_down">
+<tt class="descname">direction_down</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick is pushed down. The
+function can either take a parameter which will be the
+<a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple that has occurred, or the function can take
+no parameters at all.</p>
+<p>Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being fired.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_left">
+<tt class="descname">direction_left</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick is pushed left. The
+function can either take a parameter which will be the
+<a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple that has occurred, or the function can take
+no parameters at all.</p>
+<p>Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being fired.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_middle">
+<tt class="descname">direction_middle</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_middle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick middle click is pressed.
+The function can either take a parameter which will be the
+<a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple that has occurred, or the function can take
+no parameters at all.</p>
+<p>Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being fired.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_right">
+<tt class="descname">direction_right</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick is pushed right. The
+function can either take a parameter which will be the
+<a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple that has occurred, or the function can take
+no parameters at all.</p>
+<p>Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being fired.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.SenseStick.direction_up">
+<tt class="descname">direction_up</tt><a class="headerlink" href="#sense_emu.SenseStick.direction_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function to be called when the joystick is pushed up. The function
+can either take a parameter which will be the <a class="reference internal" href="#sense_emu.InputEvent" title="sense_emu.InputEvent"><tt class="xref py py-class docutils literal"><span class="pre">InputEvent</span></tt></a> tuple
+that has occurred, or the function can take no parameters at all.</p>
+<p>Assign <tt class="docutils literal"><span class="pre">None</span></tt> to prevent this event from being fired.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="inputevent">
+<h2>InputEvent<a class="headerlink" href="#inputevent" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sense_emu.InputEvent">
+<em class="property">class </em><tt class="descclassname">sense_emu.</tt><tt class="descname">InputEvent</tt><a class="headerlink" href="#sense_emu.InputEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference external" href="http://docs.python.org/3.4/library/collections.html#collections.namedtuple" title="(in Python v3.4)"><tt class="xref py py-func docutils literal"><span class="pre">namedtuple()</span></tt></a> derivative representing a joystick
+event. The following attributes are present:</p>
+<dl class="attribute">
+<dt id="sense_emu.InputEvent.timestamp">
+<tt class="descname">timestamp</tt><a class="headerlink" href="#sense_emu.InputEvent.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time at which the event occurred, represented as the number of
+seconds since the UNIX epoch (same output as <a class="reference external" href="http://docs.python.org/3.4/library/time.html#time.time" title="(in Python v3.4)"><tt class="xref py py-func docutils literal"><span class="pre">time()</span></tt></a>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.InputEvent.direction">
+<tt class="descname">direction</tt><a class="headerlink" href="#sense_emu.InputEvent.direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction in which the joystick was pushed (or released from), as
+one of the constants <a class="reference internal" href="#sense_emu.DIRECTION_UP" title="sense_emu.DIRECTION_UP"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_UP</span></tt></a>, <a class="reference internal" href="#sense_emu.DIRECTION_DOWN" title="sense_emu.DIRECTION_DOWN"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_DOWN</span></tt></a>,
+<a class="reference internal" href="#sense_emu.DIRECTION_LEFT" title="sense_emu.DIRECTION_LEFT"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_LEFT</span></tt></a>, <a class="reference internal" href="#sense_emu.DIRECTION_RIGHT" title="sense_emu.DIRECTION_RIGHT"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_RIGHT</span></tt></a>,
+<a class="reference internal" href="#sense_emu.DIRECTION_MIDDLE" title="sense_emu.DIRECTION_MIDDLE"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_MIDDLE</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sense_emu.InputEvent.action">
+<tt class="descname">action</tt><a class="headerlink" href="#sense_emu.InputEvent.action" title="Permalink to this definition">¶</a></dt>
+<dd><p>The action that occurred, as one of the constants
+<a class="reference internal" href="#sense_emu.ACTION_PRESSED" title="sense_emu.ACTION_PRESSED"><tt class="xref py py-data docutils literal"><span class="pre">ACTION_PRESSED</span></tt></a>, <a class="reference internal" href="#sense_emu.ACTION_RELEASED" title="sense_emu.ACTION_RELEASED"><tt class="xref py py-data docutils literal"><span class="pre">ACTION_RELEASED</span></tt></a>, or
+<a class="reference internal" href="#sense_emu.ACTION_HELD" title="sense_emu.ACTION_HELD"><tt class="xref py py-data docutils literal"><span class="pre">ACTION_HELD</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="sense_emu.DIRECTION_UP">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">DIRECTION_UP</tt><a class="headerlink" href="#sense_emu.DIRECTION_UP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.DIRECTION_DOWN">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">DIRECTION_DOWN</tt><a class="headerlink" href="#sense_emu.DIRECTION_DOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.DIRECTION_LEFT">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">DIRECTION_LEFT</tt><a class="headerlink" href="#sense_emu.DIRECTION_LEFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.DIRECTION_RIGHT">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">DIRECTION_RIGHT</tt><a class="headerlink" href="#sense_emu.DIRECTION_RIGHT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.DIRECTION_MIDDLE">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">DIRECTION_MIDDLE</tt><a class="headerlink" href="#sense_emu.DIRECTION_MIDDLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constants representating the direction in which the joystick has been
+pushed. <a class="reference internal" href="#sense_emu.DIRECTION_MIDDLE" title="sense_emu.DIRECTION_MIDDLE"><tt class="xref py py-data docutils literal"><span class="pre">DIRECTION_MIDDLE</span></tt></a> refers to pressing the joystick as a
+button.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.ACTION_PRESSED">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">ACTION_PRESSED</tt><a class="headerlink" href="#sense_emu.ACTION_PRESSED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.ACTION_RELEASED">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">ACTION_RELEASED</tt><a class="headerlink" href="#sense_emu.ACTION_RELEASED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="sense_emu.ACTION_HELD">
+<tt class="descclassname">sense_emu.</tt><tt class="descname">ACTION_HELD</tt><a class="headerlink" href="#sense_emu.ACTION_HELD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constants representing the actions that can be applied to the joystick.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sense HAT API</a><ul>
+<li><a class="reference internal" href="#sensehat">SenseHat</a></li>
+<li><a class="reference internal" href="#sensestick">SenseStick</a></li>
+<li><a class="reference internal" href="#inputevent">InputEvent</a></li>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="previous chapter">Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sense_emu_gui.html"
+                        title="next chapter">Sense Emulator</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_emu_gui.html" title="Sense Emulator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

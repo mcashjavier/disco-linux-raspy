@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/ninja_syntax.py

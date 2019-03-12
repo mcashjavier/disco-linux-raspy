@@ -1,0 +1,8 @@
+dae7e20f31113f36bcc03f73888d03c6  usr/lib/libopenblas_armv6p-r0.2.19.so
+753a35fe074e1200dc7f7aa66916634a  usr/lib/openblas-base/libblas.so.3
+d667390b39b7b5a850b888160250b59a  usr/lib/openblas-base/liblapack.so.3
+888919c9f5fa66580d391ec050d0e659  usr/share/doc/libopenblas-base/README.Debian
+266af71c85a56e3f6bc81796029c6e56  usr/share/doc/libopenblas-base/TODO.Debian
+8bf103b00defd91cd77e5fe9d87f5f4b  usr/share/doc/libopenblas-base/changelog.Debian.gz
+c465f9eca57eef1a9bf7cda0c7f70897  usr/share/doc/libopenblas-base/changelog.gz
+b3be675434f2b5551ec149f4d1d3103a  usr/share/doc/libopenblas-base/copyright

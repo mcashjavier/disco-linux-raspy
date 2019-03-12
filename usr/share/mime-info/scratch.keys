@@ -1,0 +1,8 @@
+application/x-scratch-project
+        description: Scratch Application
+        [es]description: Aplicación de Scratch
+        icon_filename: scratch.png
+        default_action_type=application
+        short_list_application_ids_for_novice_user_level=scratch
+        short_list_application_ids_for_intermediate_user_level=scratch
+        short_list_application_ids_for_advanced_user_level=scratch

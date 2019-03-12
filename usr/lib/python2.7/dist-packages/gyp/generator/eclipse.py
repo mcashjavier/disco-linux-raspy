@@ -1,0 +1,1 @@
+../../../../../share/pyshared/gyp/generator/eclipse.py

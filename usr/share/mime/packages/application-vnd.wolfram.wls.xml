@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/vnd.wolfram.wls">
+    <comment>Wolfram Language script</comment>
+    <sub-class-of type='application/x-executable'/>
+    <sub-class-of type="text/plain"/>
+    <magic priority="80">
+		<match type="string" offset="0:100" value="wolframscript" />
+    </magic>
+    <glob pattern="*.wls"/>
+  </mime-type>
+</mime-info>

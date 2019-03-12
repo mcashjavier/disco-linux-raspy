@@ -1,0 +1,4 @@
+ProductFrontEndExecutable "WolframFrontEnd"
+ProductFrontEndName "Wolfram Mathematica"
+ProductIDName "WolframEngine"
+ProductKernelName "Wolfram Language"

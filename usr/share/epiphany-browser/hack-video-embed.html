@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="hack-video-embed.js"></script>
+<script>
+function loaded() {
+    // The embed URL is passed in the hash part of the URL
+    var embedUrl = document.location.hash.substring(1);
+    var query = embedUrl.replace(/[^?]*\/?(.*)/, '$1');
+    var parsedQuery = parseQueryString(query);
+    var delayLoad = (parsedQuery['rpi-delay'] == '1');
+
+    var embedder = createEmbedLoaderForUrl(embedUrl, delayLoad);
+
+    var maxRetries = 10;
+    function tryInsertVideo() {
+        if (document.getElementById('container').offsetWidth != 0 && document.getElementById('container').offsetHeight != 0)
+            embedder.insertVideo(document.getElementById('container'));
+        else if (maxRetries-- > 0)
+            setTimeout(tryInsertVideo, 250);
+    }
+    tryInsertVideo();
+}
+</script>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#container {
+    background-color: black;
+}
+
+#yt-replacement-video {
+    width: 100%;
+    height: 100%;
+}
+
+#poster {
+    position: absolute;
+    background-color: black;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: opacity 2s;
+    opacity: 0;
+}
+
+#play-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#play-area #play-button {
+    display: block;
+    position: absolute;
+    width: 86px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    border-radius: 12px;
+    -webkit-transform: translate(-50%,-50%);
+    font-size: 33px;
+    line-height: 54px;
+    text-align: center;
+    color: white;
+    transition: background-color .2s;
+    background: #181C18;
+}
+#play-area #play-button:after {
+    content: "▶";
+}
+
+body:hover #play-area #play-button.blue {
+    background: #00AAF7;
+}
+
+
+body:hover #play-area #play-button.red {
+    background: #CE1818;
+}
+
+#error {
+    display: none;
+    background: black;
+    color: white;
+    padding: 10px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body onload="loaded()" id="container">
+    <a id="play-area"><span id="play-button"/></a>
+    <div id="poster"></div>
+    <video id="yt-replacement-video"></video>
+    <div id="error">
+        <h1>Cannot load the video</h1>
+        <p>The video <code id="error-video-id"></code> could not be loaded.</p>
+        <p id="error-message"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+9c0b71b4f24a6bf40226f09369bce8d9  usr/lib/python3/dist-packages/codebug_i2c_tether-0.2.3.egg-info
+e13d6d79041f49a8d129cfdc788494c1  usr/lib/python3/dist-packages/codebug_i2c_tether/__init__.py
+6110487e2c3a07ecd25530363095c39d  usr/lib/python3/dist-packages/codebug_i2c_tether/char_map.py
+714fb1a11436d1ef3343ae48b4e941fd  usr/lib/python3/dist-packages/codebug_i2c_tether/codebug_i2c.py
+69bb073c61f79e5378ab56a1ab1523e0  usr/lib/python3/dist-packages/codebug_i2c_tether/core.py
+2283306645bdf7863423b0a079e6a94b  usr/lib/python3/dist-packages/codebug_i2c_tether/i2c.py
+068ed0c25ff9398a2528f68192405196  usr/lib/python3/dist-packages/codebug_i2c_tether/linux_i2c.py
+a3a1d88493909f7b1b2dbfdeee819f46  usr/lib/python3/dist-packages/codebug_i2c_tether/version.py
+3f6c3e3d86d511a6a8be62c2db6e9084  usr/share/doc/python3-codebug-i2c-tether/changelog.Debian.gz
+21293b8d1804e97df02f6fa40b48d942  usr/share/doc/python3-codebug-i2c-tether/changelog.gz
+596f371fbb4d38157717e732b680ee03  usr/share/doc/python3-codebug-i2c-tether/copyright

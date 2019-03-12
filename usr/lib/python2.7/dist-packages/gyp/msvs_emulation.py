@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/msvs_emulation.py

@@ -1,0 +1,9 @@
+1293406cc204b2d450cd6d51b6580ed7  usr/lib/libcmumps_seq-4.10.0.so
+cf36227a906384df18b5f987843b2354  usr/lib/libdmumps_seq-4.10.0.so
+0d887512e118310751e780e896552ba9  usr/lib/libmpiseq_seq-4.10.0.so
+43f866f2b1f242778bdaf1fadd9e27b5  usr/lib/libmumps_common_seq-4.10.0.so
+8687f97f714bd53f97b166276bee4b51  usr/lib/libpord_seq-4.10.0.so
+e73b69c281dcb4941c7df81eaf725099  usr/lib/libsmumps_seq-4.10.0.so
+f8fcf217377f62191f41946d349c4425  usr/lib/libzmumps_seq-4.10.0.so
+a2f60fedb120f080338db531ec4ad74e  usr/share/doc/libmumps-seq-4.10.0/changelog.Debian.gz
+be628240e246f267f7c6f3622b574059  usr/share/doc/libmumps-seq-4.10.0/copyright

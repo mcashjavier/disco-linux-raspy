@@ -1,0 +1,9 @@
+db3d1494532e57fa5b9cea794900f63d  opt/iot/IoTFoundation.pem
+4652fe7f170a0e926b5fa4695cac2737  opt/iot/README
+a7172691d3e730485a66837f2c1f835d  opt/iot/iot
+40b3ae35383fa3657f24db72107af252  opt/iot/iotGetDeviceID.sh
+516250a97b996904921a78e72e341b5a  usr/lib/libpaho-mqtt3a.so.1.0
+9f7624ff841ee0b6d246e03330a68d81  usr/lib/libpaho-mqtt3as.so.1.0
+71e5eadc54b6a409fa3733640c6836da  usr/share/doc/iot/README.Debian.gz
+811bc2ae74026dac754ab43cb63db25e  usr/share/doc/iot/changelog.Debian.gz
+046e5ad48c0cb02dcbd8a29d0d6b8c36  usr/share/doc/iot/copyright

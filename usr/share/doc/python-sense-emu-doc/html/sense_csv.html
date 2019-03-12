@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sense_csv &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="Change log" href="changelog.html" />
+    <link rel="prev" title="sense_play" href="sense_play.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change log"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sense_play.html" title="sense_play"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sense-csv">
+<span id="id1"></span><h1>sense_csv<a class="headerlink" href="#sense-csv" title="Permalink to this headline">¶</a></h1>
+<p>Converts a Sense HAT recording to CSV format, for the purposes of debugging or
+analysis.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>sense_csv [-h] [--version] [-q] [-v] [-l FILE] [-P]
+          [--timestamp-format TIMESTAMP_FORMAT] [--header] input output</pre>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-sense_csv-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this program&#8217;s version number and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv-q">
+<tt class="descname">-q</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce less console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv-v">
+<tt class="descname">-v</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--verbose</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce more console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv-l">
+<tt class="descname">-l</tt><tt class="descclassname"> FILE</tt><tt class="descclassname">, </tt><tt class="descname">--log-file</tt><tt class="descclassname"> FILE</tt><a class="headerlink" href="#cmdoption-sense_csv-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>log messages to the specified file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv-P">
+<tt class="descname">-P</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--pdb</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>run under PDB (debug mode)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv--timestamp-format">
+<tt class="descname">--timestamp-format</tt><tt class="descclassname"> FMT</tt><a class="headerlink" href="#cmdoption-sense_csv--timestamp-format" title="Permalink to this definition">¶</a></dt>
+<dd><p>the format to use when outputting the record timestamp (default: ISO8601
+format, which is &#8220;%Y-%m-%dT%H:%M:%S.%f&#8221;; see <em class="manpage">strftime(3)</em> for
+information on valid format parameters)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_csv--header">
+<tt class="descname">--header</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_csv--header" title="Permalink to this definition">¶</a></dt>
+<dd><p>if specified, output column headers at the start of the output</p>
+</dd></dl>
+
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>To convert a recording to CSV, simply run <strong class="program">sense_csv</strong> with the
+recorded file as the first filename, and the output CSV file as the second:</p>
+<div class="highlight-python"><pre>$ sense_csv experiment.hat experiment.csv</pre>
+</div>
+<p>By default, only the data is output, with the columns defined as follows:</p>
+<ol class="arabic simple">
+<li>Timestamp - the moment in time at which the readings were taken (note that
+as the Pi lacks a real-time clock, this is likely to be inaccurate unless
+the clock has been set with NTP).</li>
+<li>Pressure - the reading from the pressure sensor in hectopascals (hPa).</li>
+<li>Temperature - the temperature reading from the pressure sensor in degrees
+celsius (°C).</li>
+<li>Humidity - the reading from the humidity sensor in % humidity.</li>
+<li>Temperature - the temperature reading from the humidity sensor in degrees
+celsius (°C).</li>
+<li>Accelerometer X-axis - the acceleration reading along the X-axis of the
+HAT in g.</li>
+<li>Accelerometer Y-axis.</li>
+<li>Accelerometer Z-axis.</li>
+<li>Gyroscope X-axis - the angular rate of change around the X-axis of the
+HAT in degrees per second.</li>
+<li>Gyroscope Y-axis.</li>
+<li>Gyroscope Z-axis.</li>
+<li>Compass X-axis - the magnetometer reading along the X-axis in micro-teslas.</li>
+<li>Compass Y-axis.</li>
+<li>Compass Z-axis.</li>
+<li>Orientation X-axis - the computed orientation of the HAT as radians
+rotation (-π to +π) about the X-axis.</li>
+<li>Orientation Y-axis.</li>
+<li>Orientation Z-axis.</li>
+</ol>
+<p>If you wish to include column headers as the first row of data, simply
+specify the <a class="reference internal" href="#cmdoption-sense_csv--header"><em class="xref std std-option">--header</em></a> option:</p>
+<div class="highlight-python"><pre>$ sense_csv --header experiment.hat experiment.csv</pre>
+</div>
+<p>If <tt class="file docutils literal"><span class="pre">-</span></tt> is specified for either filename, <strong class="program">sense_csv</strong> will read
+from stdin, or write to stdout. This can be used in conjunction with other
+standard command line utilities for all sorts of effects. For example, to
+produce a CSV file containing only the timestamps, humidity, and accelerometer
+readings:</p>
+<div class="highlight-python"><pre>$ sense_csv --header experiment.hat - | cut -d, -f1,4,6-8 &gt; experiment.csv</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sense_csv</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sense_play.html"
+                        title="previous chapter">sense_play</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="changelog.html"
+                        title="next chapter">Change log</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/sense_csv.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change log"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sense_play.html" title="sense_play"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+[    42.457] 
+X.Org X Server 1.18.4
+Release Date: 2016-07-19
+[    42.457] X Protocol Version 11, Revision 0
+[    42.457] Build Operating System: Linux 4.4.26-v7+ armv7l Raspbian
+[    42.458] Current Operating System: Linux raspberrypi 4.9.35+ #1014 Fri Jun 30 14:34:49 BST 2017 armv6l
+[    42.458] Kernel command line: 8250.nr_uarts=1 bcm2708_fb.fbwidth=640 bcm2708_fb.fbheight=480 bcm2708_fb.fbswap=1 smsc95xx.macaddr=B8:27:EB:9B:91:D5 vc_mem.mem_base=0x1ec00000 vc_mem.mem_size=0x20000000  dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait fbcon=map:10 fbcon=font:ProFont6x11 logo.nologo
+[    42.458] Build Date: 11 November 2016  11:59:59AM
+[    42.459] xorg-server 2:1.18.4-2+rpi1 (https://www.debian.org/support) 
+[    42.459] Current version of pixman: 0.33.3
+[    42.459] 	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+[    42.459] Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    42.476] (==) Log file: "/var/log/Xorg.0.log", Time: Wed Nov 28 18:06:09 2018
+[    42.478] (==) Using config directory: "/etc/X11/xorg.conf.d"
+[    42.478] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[    42.495] (==) No Layout section.  Using the first Screen section.
+[    42.495] (==) No screen section available. Using defaults.
+[    42.495] (**) |-->Screen "Default Screen Section" (0)
+[    42.496] (**) |   |-->Monitor "<default monitor>"
+[    42.507] (==) No device specified for screen "Default Screen Section".
+	Using the first device section listed.
+[    42.507] (**) |   |-->Device "Allwinner A10/A13 FBDEV"
+[    42.508] (==) No monitor specified for screen "Default Screen Section".
+	Using a default monitor configuration.
+[    42.508] (==) Automatically adding devices
+[    42.508] (==) Automatically enabling devices
+[    42.508] (==) Automatically adding GPU devices
+[    42.508] (==) Max clients allowed: 256, resource mask: 0x1fffff
+[    42.509] (WW) The directory "/usr/share/fonts/X11/misc" does not exist.
+[    42.509] 	Entry deleted from font path.
+[    42.509] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[    42.509] 	Entry deleted from font path.
+[    42.520] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+[    42.520] 	Entry deleted from font path.
+[    42.521] (WW) The directory "/usr/share/fonts/X11/75dpi" does not exist.
+[    42.521] 	Entry deleted from font path.
+[    42.521] (==) FontPath set to:
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	built-ins
+[    42.521] (==) ModulePath set to "/usr/lib/xorg/modules"
+[    42.521] (II) The server relies on udev to provide the list of input devices.
+	If no devices become available, reconfigure udev or disable AutoAddDevices.
+[    42.521] (II) Loader magic: 0x7f7def20
+[    42.521] (II) Module ABI versions:
+[    42.521] 	X.Org ANSI C Emulation: 0.4
+[    42.522] 	X.Org Video Driver: 20.0
+[    42.522] 	X.Org XInput driver : 22.1
+[    42.522] 	X.Org Server Extension : 9.0
+[    42.536] (++) using VT number 7
+
+[    42.536] (II) systemd-logind: logind integration requires -keeptty and -keeptty was not provided, disabling logind integration
+[    42.537] (II) no primary bus or device found
+[    42.540] (II) LoadModule: "glx"
+[    42.542] (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+[    42.722] (II) Module glx: vendor="X.Org Foundation"
+[    42.723] 	compiled for 1.18.4, module version = 1.0.0
+[    42.723] 	ABI class: X.Org Server Extension, version 9.0
+[    42.723] (==) AIGLX enabled
+[    42.723] (II) LoadModule: "fbturbo"
+[    42.725] (II) Loading /usr/lib/xorg/modules/drivers/fbturbo_drv.so
+[    42.757] (II) Module fbturbo: vendor="X.Org Foundation"
+[    42.757] 	compiled for 1.18.4, module version = 0.5.1
+[    42.757] 	Module class: X.Org Video Driver
+[    42.757] 	ABI class: X.Org Video Driver, version 20.0
+[    42.757] (II) FBTURBO: driver for framebuffer: fbturbo
+[    42.764] (WW) Falling back to old probe method for fbturbo
+[    42.764] (II) Loading sub module "fbdevhw"
+[    42.764] (II) LoadModule: "fbdevhw"
+[    42.765] (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
+[    42.782] (II) Module fbdevhw: vendor="X.Org Foundation"
+[    42.782] 	compiled for 1.18.4, module version = 0.0.2
+[    42.782] 	ABI class: X.Org Video Driver, version 20.0
+[    42.783] (II) FBTURBO(0): using /dev/fb1
+[    42.783] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+[    42.784] (II) FBTURBO(0): Creating default Display subsection in Screen section
+	"Default Screen Section" for depth/fbbpp 16/16
+[    42.784] (==) FBTURBO(0): Depth 16, (==) framebuffer bpp 16
+[    42.784] (==) FBTURBO(0): RGB weight 565
+[    42.784] (==) FBTURBO(0): Default visual is TrueColor
+[    42.784] (==) FBTURBO(0): Using gamma correction (1.0, 1.0, 1.0)
+[    42.785] (II) FBTURBO(0): hardware: fb_ili9486 (video memory: 300kB)
+[    42.785] (**) FBTURBO(0): Option "fbdev" "/dev/fb1"
+[    42.785] (**) FBTURBO(0): Option "SwapbuffersWait" "true"
+[    42.786] (II) FBTURBO(0): processor: ARM1176
+[    42.786] (II) FBTURBO(0): checking modes against framebuffer device...
+[    42.787] (II) FBTURBO(0): checking modes against monitor...
+[    42.787] (--) FBTURBO(0): Virtual size is 480x320 (pitch 480)
+[    42.787] (**) FBTURBO(0):  Built-in mode "current"
+[    42.787] (==) FBTURBO(0): DPI set to (96, 96)
+[    42.787] (II) Loading sub module "fb"
+[    42.787] (II) LoadModule: "fb"
+[    42.789] (II) Loading /usr/lib/xorg/modules/libfb.so
+[    42.874] (II) Module fb: vendor="X.Org Foundation"
+[    42.874] 	compiled for 1.18.4, module version = 1.0.0
+[    42.874] 	ABI class: X.Org ANSI C Emulation, version 0.4
+[    42.875] (II) FBTURBO(0): FBIOBLANK: Invalid argument (Screen blanking not supported by kernel - disabling)
+[    42.932] (II) FBTURBO(0): using backing store heuristics
+[    43.026] (II) FBTURBO(0): can't load 'g2d_23' kernel module
+[    43.027] (II) FBTURBO(0): failed to enable the use of sunxi display controller
+[    43.027] (II) FBTURBO(0): No sunxi-g2d hardware detected (check /dev/disp and /dev/g2d)
+[    43.027] (II) FBTURBO(0): G2D hardware acceleration can't be enabled
+[    43.027] (II) FBTURBO(0): enabled VFP/NEON optimizations
+[    43.028] (==) FBTURBO(0): Backing store enabled
+[    43.047] (==) FBTURBO(0): DPMS enabled
+[    43.047] (II) FBTURBO(0): failed to enable hardware cursor
+[    43.047] (II) FBTURBO(0): no 3D acceleration because the driver has been compiled without libUMP
+[    43.047] (II) FBTURBO(0): if this is wrong and needs to be fixed, please check ./configure log
+[    43.050] (==) RandR enabled
+[    43.177] (II) SELinux: Disabled on system
+[    43.197] (II) AIGLX: Screen 0 is not DRI2 capable
+[    43.197] (EE) AIGLX: reverting to software rendering
+[    46.699] (II) AIGLX: enabled GLX_MESA_copy_sub_buffer
+[    46.725] (II) AIGLX: Loaded and initialized swrast
+[    46.725] (II) GLX: Initialized DRISWRAST GL provider for screen 0
+[    47.522] (II) config/udev: Adding input device ADS7846 Touchscreen (/dev/input/event0)
+[    47.522] (**) ADS7846 Touchscreen: Applying InputClass "libinput touchscreen catchall"
+[    47.522] (**) ADS7846 Touchscreen: Applying InputClass "libinput touchscreen catchall"
+[    47.523] (**) ADS7846 Touchscreen: Applying InputClass "calibration"
+[    47.523] (II) LoadModule: "libinput"
+[    47.524] (II) Loading /usr/lib/xorg/modules/input/libinput_drv.so
+[    47.589] (II) Module libinput: vendor="X.Org Foundation"
+[    47.589] 	compiled for 1.18.4, module version = 0.20.0
+[    47.589] 	Module class: X.Org XInput Driver
+[    47.590] 	ABI class: X.Org XInput driver, version 22.1
+[    47.590] (II) Using input driver 'libinput' for 'ADS7846 Touchscreen'
+[    47.590] (**) ADS7846 Touchscreen: always reports core events
+[    47.590] (**) Option "Device" "/dev/input/event0"
+[    47.592] (**) Option "_source" "server/udev"
+[    47.596] (II) input device 'ADS7846 Touchscreen', /dev/input/event0 is tagged by udev as: Touchscreen
+[    47.596] (II) input device 'ADS7846 Touchscreen', /dev/input/event0 is a touch device
+[    47.598] (**) Option "config_info" "udev:/sys/devices/platform/soc/20204000.spi/spi_master/spi0/spi0.1/input/input0/event0"
+[    47.598] (II) XINPUT: Adding extended input device "ADS7846 Touchscreen" (type: TOUCHSCREEN, id 6)
+[    47.600] (**) Option "AccelerationScheme" "none"
+[    47.601] (**) ADS7846 Touchscreen: (accel) selected scheme none/0
+[    47.601] (**) ADS7846 Touchscreen: (accel) acceleration factor: 2.000
+[    47.601] (**) ADS7846 Touchscreen: (accel) acceleration threshold: 4
+[    47.601] (**) Option "TransformationMatrix" "1 0 0 0 -1 1 0 0 1"
+[    47.604] (II) input device 'ADS7846 Touchscreen', /dev/input/event0 is tagged by udev as: Touchscreen
+[    47.604] (II) input device 'ADS7846 Touchscreen', /dev/input/event0 is a touch device
+[    47.608] (II) config/udev: Adding input device ADS7846 Touchscreen (/dev/input/mouse0)
+[    47.608] (**) ADS7846 Touchscreen: Applying InputClass "calibration"
+[    47.608] (II) No input driver specified, ignoring this device.
+[    47.609] (II) This device may have been added with another device file.

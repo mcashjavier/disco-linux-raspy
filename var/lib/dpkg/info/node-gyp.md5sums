@@ -1,0 +1,15 @@
+de33c7bc2d73e1636ca3d3e4fdbe34f9  usr/share/doc/node-gyp/README.md.gz
+08142a79c9fccffa70442aabc946f84a  usr/share/doc/node-gyp/changelog.Debian.gz
+e6f452826aa0d20b1844cbe0ec0d604f  usr/share/doc/node-gyp/copyright
+683526d35e0a90816c344a623b8dc349  usr/share/man/man1/node-gyp.1.gz
+6d2b77b142bc26ccf2eec8c9d49f0483  usr/share/node-gyp/addon.gypi
+01e1328e570a47a512e8bdc245d0b833  usr/share/node-gyp/bin/node-gyp.js
+1a327ba4b522d9e65d15fc9694f03bcc  usr/share/node-gyp/lib/build.js
+4ede30b71a4cefcf2a1050936b2cd806  usr/share/node-gyp/lib/clean.js
+9c507850b4ea57bbfce6b99451b2bc85  usr/share/node-gyp/lib/configure.js
+29bd68bec5aa9ad63477e4650cfe09b6  usr/share/node-gyp/lib/install.js
+7880aa492fcbe0ba89e3bac433bfa939  usr/share/node-gyp/lib/list.js
+d9ef3c98f805759880a3b5a5e4f64fad  usr/share/node-gyp/lib/node-gyp.js
+8af0ffdc41954a88dd597555d065e0fe  usr/share/node-gyp/lib/rebuild.js
+2556854133b6d96a1ed6f28c4d4ef467  usr/share/node-gyp/lib/remove.js
+c9d0057042cb20b2396f5810ddb8336f  usr/share/node-gyp/package.json

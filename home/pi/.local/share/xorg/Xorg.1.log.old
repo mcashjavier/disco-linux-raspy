@@ -1,0 +1,81 @@
+[   217.216] 
+X.Org X Server 1.18.4
+Release Date: 2016-07-19
+[   217.217] X Protocol Version 11, Revision 0
+[   217.217] Build Operating System: Linux 4.4.26-v7+ armv7l Raspbian
+[   217.218] Current Operating System: Linux raspberrypi 4.9.35+ #1014 Fri Jun 30 14:34:49 BST 2017 armv6l
+[   217.218] Kernel command line: 8250.nr_uarts=1 bcm2708_fb.fbwidth=640 bcm2708_fb.fbheight=480 bcm2708_fb.fbswap=1 smsc95xx.macaddr=B8:27:EB:0D:43:9D vc_mem.mem_base=0x1ec00000 vc_mem.mem_size=0x20000000  dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait fbcon=map:10 fbcon=font:ProFont6x11 logo.nologo
+[   217.219] Build Date: 11 November 2016  11:59:59AM
+[   217.220] xorg-server 2:1.18.4-2+rpi1 (https://www.debian.org/support) 
+[   217.220] Current version of pixman: 0.33.3
+[   217.220] 	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+[   217.220] Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[   217.226] (==) Log file: "/home/pi/.local/share/xorg/Xorg.1.log", Time: Thu Jun 28 22:29:32 2018
+[   217.228] (==) Using config directory: "/etc/X11/xorg.conf.d"
+[   217.229] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[   217.234] (==) No Layout section.  Using the first Screen section.
+[   217.235] (==) No screen section available. Using defaults.
+[   217.235] (**) |-->Screen "Default Screen Section" (0)
+[   217.235] (**) |   |-->Monitor "<default monitor>"
+[   217.236] (==) No device specified for screen "Default Screen Section".
+	Using the first device section listed.
+[   217.237] (**) |   |-->Device "Allwinner A10/A13 FBDEV"
+[   217.237] (==) No monitor specified for screen "Default Screen Section".
+	Using a default monitor configuration.
+[   217.237] (==) Automatically adding devices
+[   217.237] (==) Automatically enabling devices
+[   217.237] (==) Automatically adding GPU devices
+[   217.237] (==) Max clients allowed: 256, resource mask: 0x1fffff
+[   217.238] (WW) The directory "/usr/share/fonts/X11/misc" does not exist.
+[   217.238] 	Entry deleted from font path.
+[   217.238] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[   217.238] 	Entry deleted from font path.
+[   217.238] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+[   217.238] 	Entry deleted from font path.
+[   217.239] (WW) The directory "/usr/share/fonts/X11/75dpi" does not exist.
+[   217.239] 	Entry deleted from font path.
+[   217.239] (==) FontPath set to:
+	/usr/share/fonts/X11/100dpi/:unscaled,
+	/usr/share/fonts/X11/Type1,
+	/usr/share/fonts/X11/100dpi,
+	built-ins
+[   217.239] (==) ModulePath set to "/usr/lib/xorg/modules"
+[   217.239] (II) The server relies on udev to provide the list of input devices.
+	If no devices become available, reconfigure udev or disable AutoAddDevices.
+[   217.239] (II) Loader magic: 0x7f7acf20
+[   217.249] (II) Module ABI versions:
+[   217.249] 	X.Org ANSI C Emulation: 0.4
+[   217.249] 	X.Org Video Driver: 20.0
+[   217.249] 	X.Org XInput driver : 22.1
+[   217.249] 	X.Org Server Extension : 9.0
+[   217.287] (II) systemd-logind: took control of session /org/freedesktop/login1/session/c2
+[   217.288] (II) no primary bus or device found
+[   217.288] (II) LoadModule: "glx"
+[   217.295] (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+[   217.339] (II) Module glx: vendor="X.Org Foundation"
+[   217.339] 	compiled for 1.18.4, module version = 1.0.0
+[   217.339] 	ABI class: X.Org Server Extension, version 9.0
+[   217.345] (==) AIGLX enabled
+[   217.345] (II) LoadModule: "fbturbo"
+[   217.346] (II) Loading /usr/lib/xorg/modules/drivers/fbturbo_drv.so
+[   217.348] (II) Module fbturbo: vendor="X.Org Foundation"
+[   217.348] 	compiled for 1.18.4, module version = 0.5.1
+[   217.348] 	Module class: X.Org Video Driver
+[   217.348] 	ABI class: X.Org Video Driver, version 20.0
+[   217.348] (II) FBTURBO: driver for framebuffer: fbturbo
+[   217.351] (EE) 
+Fatal server error:
+[   217.352] (EE) parse_vt_settings: Cannot open /dev/tty0 (Permission denied)
+[   217.352] (EE) 
+[   217.353] (EE) 
+Please consult the The X.Org Foundation support 
+	 at http://wiki.x.org
+ for help. 
+[   217.355] (EE) Please also check the log file at "/home/pi/.local/share/xorg/Xorg.1.log" for additional information.
+[   217.355] (EE) 
+[   217.356] (WW) xf86CloseConsole: KDSETMODE failed: Bad file descriptor
+[   217.356] (WW) xf86CloseConsole: VT_GETMODE failed: Bad file descriptor
+[   217.366] (EE) Server terminated with error (1). Closing log file.

@@ -1,0 +1,17 @@
+TARGETS = dhcpcd hostapd rsyslog triggerhappy killprocs motd bootlogs iot dbus dnsmasq single dphys-swapfile ssh ntp avahi-daemon lightdm bluetooth rsync cron raspi-config plymouth rmnologin rc.local
+INTERACTIVE =
+iot: rsyslog
+dbus: rsyslog
+dnsmasq: rsyslog
+single: killprocs motd bootlogs
+dphys-swapfile: rsyslog
+ssh: rsyslog
+ntp: rsyslog
+avahi-daemon: dbus rsyslog
+lightdm: dbus
+bluetooth: rsyslog dbus
+rsync: rsyslog dnsmasq
+cron: rsyslog dnsmasq
+plymouth: dhcpcd hostapd rsyslog iot triggerhappy avahi-daemon dbus lightdm bluetooth dnsmasq motd bootlogs rsync raspi-config dphys-swapfile ssh cron ntp
+rmnologin: dhcpcd hostapd rsyslog iot triggerhappy avahi-daemon dbus lightdm bluetooth dnsmasq motd bootlogs rsync raspi-config dphys-swapfile ssh cron ntp
+rc.local: dhcpcd hostapd rsyslog iot triggerhappy avahi-daemon dbus lightdm bluetooth dnsmasq motd bootlogs rsync raspi-config dphys-swapfile ssh cron ntp

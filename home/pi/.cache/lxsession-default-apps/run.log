@@ -1,0 +1,94 @@
+** Message: utils.vala:30: config_path_directory: /home/pi/.config/lxsession-default-apps
+** Message: desktop-files-backend.vala:171: test config_path: /home/pi/.config/lxsession-default-apps/settings.conf
+** Message: desktop-files-backend.vala:237: Scanning folder: /usr/share/applications
+** Message: desktop-files-backend.vala:287: Start scanning
+
+** Message: desktop-files-backend.vala:265: /usr/share/app-install/desktop doesn't exist. Pass
+** Message: desktop-files-backend.vala:209: Signal finish scanning available with mode: write
+** Message: desktop-files-backend.vala:189: Signal finish scanning installed with mode: write
+** Message: desktop-files-backend.vala:342: Finishing scanning
+
+
+(lxsession-default-apps:1574): Gtk-WARNING **: Attempting to add a widget with type GtkVBox to a container of type LDefaultAppsMainWindows, but the widget is already inside a container of type GtkWindow, the GTK+ FAQ at http://library.gnome.org/devel/gtk-faq/stable/ explains how to reparent a widget.
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:87: Autostart conf file : /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:100: Autostart line : @lxpanel --profile LXDE-pi
+** Message: autostart.vala:100: Autostart line : @pcmanfm --desktop --profile LXDE-pi
+** Message: autostart.vala:100: Autostart line : #@xscreensaver -no-splash
+** Message: autostart.vala:100: Autostart line : #@point-rpi
+** Message: autostart.vala:100: Autostart line : #sudo python3 /home/pi/Controller.py
+
+(lxsession-default-apps:1574): Gtk-WARNING **: Attempting to add a widget with type GtkVBox to a container of type GtkAlignment, but the widget is already inside a container of type GtkAlignment, the GTK+ FAQ at http://library.gnome.org/devel/gtk-faq/stable/ explains how to reparent a widget.
+** Message: combobox.vala:443: Defaut = pcmanfm
+** Message: combobox.vala:503: Iter == 1
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = lxterminal
+** Message: combobox.vala:503: Iter == 3
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:443: Defaut = 
+** Message: combobox.vala:503: Iter == 0
+** Message: combobox.vala:728: Defaut = no
+** Message: combobox.vala:765: Iter == 0
+** Message: combobox.vala:684:  Return value for no
+** Message: combobox.vala:728: Defaut = 
+** Message: combobox.vala:765: Iter == 0
+
+(lxsession-default-apps:1574): GLib-GObject-WARNING **: invalid (NULL) pointer instance
+
+(lxsession-default-apps:1574): GLib-GObject-CRITICAL **: g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+** Message: combobox.vala:728: Defaut = 
+** Message: combobox.vala:728: Defaut = 
+** Message: combobox.vala:765: Iter == 0
+** Message: autostart.vala:113: Label to update : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:196: read : @lxpanel --profile LXDE-pi
+** Message: autostart.vala:197: line : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:196: read : @pcmanfm --desktop --profile LXDE-pi
+** Message: autostart.vala:197: line : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:196: read : #@xscreensaver -no-splash
+** Message: autostart.vala:197: line : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:196: read : #@point-rpi
+** Message: autostart.vala:197: line : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:196: read : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:197: line : #sudo python3 /home/pi/Controller.py
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:72: Conf file for autostart: /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:87: Autostart conf file : /home/pi/.config/lxsession/LXDE-pi/autostart
+** Message: autostart.vala:100: Autostart line : @lxpanel --profile LXDE-pi
+** Message: autostart.vala:100: Autostart line : @pcmanfm --desktop --profile LXDE-pi
+** Message: autostart.vala:100: Autostart line : #@xscreensaver -no-splash
+** Message: autostart.vala:100: Autostart line : #@point-rpi
+** Message: autostart.vala:100: Autostart line : sudo python3 /home/pi/Controller.py
+
+(lxsession-default-apps:1574): Gtk-WARNING **: Attempting to add a widget with type GtkVBox to a container of type GtkAlignment, but the widget is already inside a container of type GtkAlignment, the GTK+ FAQ at http://library.gnome.org/devel/gtk-faq/stable/ explains how to reparent a widget.
+** Message: autostart.vala:119: Activate : (null)

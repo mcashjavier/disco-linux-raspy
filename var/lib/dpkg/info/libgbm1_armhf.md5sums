@@ -1,0 +1,6 @@
+c78dad7cdacdcc97013884978a17c478  usr/lib/arm-linux-gnueabihf/libgbm.so.1.0.0
+7f0d95ab544ef194372363bb93229ede  usr/share/bug/libgbm1/control
+114f277e413ffae0a725cc024a955b47  usr/share/bug/libgbm1/script
+25a262fc282224045e8f6573bc1058e6  usr/share/doc/libgbm1/changelog.Debian.gz
+ca50268058fa1a7779826770b79c2fd1  usr/share/doc/libgbm1/copyright
+5e7f4179767e22980f8e7f7fff30d658  usr/share/lintian/overrides/libgbm1

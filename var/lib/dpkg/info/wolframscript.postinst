@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+# Search for old symbolic links and create and destroy them as needed
+for oldlink in wolframscript; do
+    if [ -L "/usr/bin/$oldlink" ]; then
+        rm "/usr/bin/$oldlink"
+    fi
+done
+
+# Create new application links
+for newlink in wolframscript; do
+    if [ ! -e "/usr/bin/$newlink" ]; then
+        ln -s "/opt/Wolfram/WolframScript/bin/$newlink" "/usr/bin/$newlink"
+        exit 0
+    else
+        echo "Cannot create symbolic link for $newlink in /usr/bin"
+        exit 1
+    fi
+done
+
+# Update MIME types for .wls extension
+update-mime-database /usr/share/mime

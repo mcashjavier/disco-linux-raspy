@@ -1,0 +1,8 @@
+2b78a81ee78efe264ea28451a432bda2  usr/bin/vncviewer
+83621591ed220d86dc7aab5e02a18df0  usr/share/applications/realvnc-vncviewer.desktop
+7f632672ef49f5d69ed685667e926a83  usr/share/doc/realvnc-vnc-viewer/changelog.gz
+d0dc5531659b47b08cd27d97f301d022  usr/share/doc/realvnc-vnc-viewer/copyright
+b7f44bac851413aa1c6bfbe9635bf556  usr/share/icons/hicolor/48x48/apps/vncviewer48x48.png
+cc524c59b31e002e79ef9652da2c2f34  usr/share/man/man1/vncviewer.1.gz
+a07d0687406dacafdb42bca80e3cec4b  usr/share/mime/packages/realvnc-vncviewer.xml
+59c3f2081e65826d46cbb5830e7d38b2  usr/share/mimelnk/application/realvnc-vncviewer-mime.desktop

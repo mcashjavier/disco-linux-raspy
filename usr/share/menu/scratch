@@ -1,0 +1,3 @@
+?package(scratch):needs="X11" section="Applications/Education" \
+  title="Scratch" command="/usr/bin/scratch" \
+  icon="/usr/share/pixmaps/scratch.xpm"

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Raspberry Pi Resources
+TryExec=/usr/bin/x-www-browser
+Exec=x-www-browser http://www.raspberrypi.org/resources/
+Icon=rpi
+Terminal=false
+Type=Application
+Categories=Application;Network;
+StartupNotify=true

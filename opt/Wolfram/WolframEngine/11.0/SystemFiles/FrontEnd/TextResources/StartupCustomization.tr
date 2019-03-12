@@ -1,0 +1,12 @@
+@@resource progressTextColor
+RGBColor[255,255,255]
+@|
+@@resource progressTextBackColor
+RGBColor[0,0,0]
+@|
+@@resource progressTextLocation
+{273, 289}
+@|
+@@resource personalizeProduct
+Product Activation
+@|

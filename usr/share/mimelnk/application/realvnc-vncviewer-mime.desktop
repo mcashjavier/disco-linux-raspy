@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=MimeType
+MimeType=application/vnc-shortcut
+Icon=/usr/share/icons/hicolor/48x48/apps/vncviewer48x48.png
+Patterns=*.vnc;
+DefaultApp=vncviewer
+Comment=VNC Viewer
+Comment[de]=VNC Viewer
+Comment[es]=VNC Viewer
+Comment[fr]=VNC Viewer

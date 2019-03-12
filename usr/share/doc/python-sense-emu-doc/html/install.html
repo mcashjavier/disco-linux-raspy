@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Sense HAT Emulator" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sense HAT Emulator"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="raspbian-installation">
+<span id="raspbian-install"></span><h2>Raspbian installation<a class="headerlink" href="#raspbian-installation" title="Permalink to this headline">¶</a></h2>
+<p>If you are using the <a class="reference external" href="http://www.raspbian.org/">Raspbian</a> distro, it is best to install the Sense HAT
+Emulator using the system&#8217;s package manager: apt. This will ensure that the
+emulator is easy to keep up to date, and easy to remove should you wish to do
+so. To install using apt simply:</p>
+<div class="highlight-python"><pre>$ sudo apt-get update
+$ sudo apt-get install python-sense-emu python3-sense-emu sense-emu-tools</pre>
+</div>
+<p>These three packages contain the following things:</p>
+<dl class="docutils">
+<dt>sense-emu-tools</dt>
+<dd>This package contains the Sense HAT Emulator application.</dd>
+<dt>python-sense-emu</dt>
+<dd>This is the Python 2 version of the Sense HAT Emulator library.</dd>
+<dt>python3-sense-emu</dt>
+<dd>This is the Python 3 version of the Sense HAT Emulator library.</dd>
+</dl>
+<p>To upgrade your installation when new releases are made you can simply use
+apt&#8217;s normal upgrade procedure:</p>
+<div class="highlight-python"><pre>$ sudo apt-get update
+$ sudo apt-get upgrade</pre>
+</div>
+<p>If you ever need to remove your installation:</p>
+<div class="highlight-python"><pre>$ sudo apt-get remove python-sense-emu python3-sense-emu sense-emu-tools</pre>
+</div>
+</div>
+<div class="section" id="ubuntu-installation">
+<span id="ubuntu-install"></span><h2>Ubuntu installation<a class="headerlink" href="#ubuntu-installation" title="Permalink to this headline">¶</a></h2>
+<p>To install from the author&#8217;s <a class="reference external" href="https://launchpad.net/~waveform/+archive/ppa">PPA</a>:</p>
+<div class="highlight-python"><pre>$ sudo add-apt-repository ppa://waveform/ppa
+$ sudo apt-get update
+$ sudo apt-get install python-sense-emu python3-sense-emu sense-emu-tools</pre>
+</div>
+<p>To upgrade your installation when new releases are made you can simply use
+apt&#8217;s normal upgrade procedure:</p>
+<div class="highlight-python"><pre>$ sudo apt-get update
+$ sudo apt-get upgrade</pre>
+</div>
+<p>To remove the installation:</p>
+<div class="highlight-python"><pre>$ sudo apt-get remove python-sense-emu python3-sense-emu sense-emu-tools</pre>
+</div>
+</div>
+<div class="section" id="alternate-platforms">
+<span id="other-install"></span><h2>Alternate platforms<a class="headerlink" href="#alternate-platforms" title="Permalink to this headline">¶</a></h2>
+<p>On platforms other than Raspbian or Ubuntu, it is probably simplest to install
+system wide using Python&#8217;s <tt class="docutils literal"><span class="pre">pip</span></tt> tool:</p>
+<div class="highlight-python"><pre>$ pip install sense-emu</pre>
+</div>
+<p>To upgrade your installation when new releases are made:</p>
+<div class="highlight-python"><pre>$ pip install -U sense-emu</pre>
+</div>
+<p>If you ever need to remove your installation:</p>
+<div class="highlight-python"><pre>$ pip uninstall sense-emu</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The emulator application requires PyGObject to be installed (GTK3 bindings
+for Python), but this cannot be obtained from PyPI; install PyGObject
+manually from your operating system&#8217;s package manager (e.g. python-gi or
+python3-gi on Raspbian/Ubuntu).</p>
+<p class="last">Also note that installation via <tt class="docutils literal"><span class="pre">pip</span></tt> won&#8217;t create short-cuts for the
+emulator application in your desktop&#8217;s start menu. Instead you will have to
+launch it manually by running <tt class="docutils literal"><span class="pre">sense_emu_gui</span></tt> from the command line.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#raspbian-installation">Raspbian installation</a></li>
+<li><a class="reference internal" href="#ubuntu-installation">Ubuntu installation</a></li>
+<li><a class="reference internal" href="#alternate-platforms">Alternate platforms</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Sense HAT Emulator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Examples</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sense HAT Emulator"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

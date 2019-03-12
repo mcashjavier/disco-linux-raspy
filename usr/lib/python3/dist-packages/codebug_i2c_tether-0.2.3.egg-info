@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: codebug_i2c_tether
+Version: 0.2.3
+Summary: CodeBug I2C Tether module.
+Home-page: https://github.com/codebugtools/codebug_i2c_tether
+Author: Thomas Preston
+Author-email: thomas.preston@openlx.org.uk
+License: GPLv3+
+Description: # CodeBug I2C Tether
+        
+        Controlling a CodeBug tethered over I2C.
+        
+        Documentation: [http://codebug-i2c-tether.readthedocs.org/](http://codebug-i2c-tether.readthedocs.org/)
+        Change Log
+        ==========
+        
+        v0.2.3
+        ------
+        - Seperated input/output channel indexes to fix input bug. This includes an
+          update to the firmware.
+        
+        v0.2.2
+        ------
+        - Minor changes to `set_leg_io` doc string.
+        
+        v0.2.1
+        ------
+        - Changed internal operation of `set_leg_io()` method. Also updated firmware.
+        
+        v0.2.0
+        ------
+        - Added `set_leg_io()` method so we can change leg direction.
+        
+        v0.1.0
+        ------
+        - Initial Release
+        
+Keywords: codebug raspberrypi raspberry pi openlx
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

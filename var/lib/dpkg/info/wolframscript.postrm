@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+# Remove wolframscript symbolic links
+for link in wolframscript; do
+    if [ -L "/usr/bin/$link" ]; then
+        rm "/usr/bin/$link"
+    fi
+done
+
+update-mime-database /usr/share/mime

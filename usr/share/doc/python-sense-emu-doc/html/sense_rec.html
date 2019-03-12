@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sense_rec &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="sense_play" href="sense_play.html" />
+    <link rel="prev" title="Sense Emulator" href="sense_emu_gui.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_play.html" title="sense_play"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sense_emu_gui.html" title="Sense Emulator"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sense-rec">
+<span id="id1"></span><h1>sense_rec<a class="headerlink" href="#sense-rec" title="Permalink to this headline">¶</a></h1>
+<p>Records sensor readings from the Raspberry Pi Sense HAT in real time,
+outputting the results to a file for later playback or analysis.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>sense_rec [-h] [--version] [-q] [-v] [-l FILE] [-P] [-c CONFIG]
+          [-d DURATION] [-f] output</pre>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-sense_rec-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this program&#8217;s version number and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-q">
+<tt class="descname">-q</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce less console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-v">
+<tt class="descname">-v</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--verbose</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce more console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-l">
+<tt class="descname">-l</tt><tt class="descclassname"> FILE</tt><tt class="descclassname">, </tt><tt class="descname">--log-file</tt><tt class="descclassname"> FILE</tt><a class="headerlink" href="#cmdoption-sense_rec-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>log messages to the specified file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-P">
+<tt class="descname">-P</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--pdb</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>run under PDB (debug mode)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-c">
+<tt class="descname">-c</tt><tt class="descclassname"> FILE</tt><tt class="descclassname">, </tt><tt class="descname">--config</tt><tt class="descclassname"> FILE</tt><a class="headerlink" href="#cmdoption-sense_rec-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>the Sense HAT configuration file to use (default: /etc/RTIMULib.ini)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-d">
+<tt class="descname">-d</tt><tt class="descclassname"> SECS</tt><tt class="descclassname">, </tt><tt class="descname">--duration</tt><tt class="descclassname"> SECS</tt><a class="headerlink" href="#cmdoption-sense_rec-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>the duration to record for in seconds (default: record until terminated
+with <tt class="kbd docutils literal"><span class="pre">Control-C</span></tt>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_rec-f">
+<tt class="descname">-f</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--flush</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_rec-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>flush every record to disk immediately; reduces chances of truncated data
+on power loss, but greatly increases disk activity</p>
+</dd></dl>
+
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>To record an experiment with the Sense HAT, simply execute <strong class="program">sense_rec</strong>
+with the filename you wish to record the results:</p>
+<div class="highlight-python"><pre>$ sense_rec experiment.hat</pre>
+</div>
+<p>By default, the recording will continue indefinitely. Press <tt class="kbd docutils literal"><span class="pre">Control-C</span></tt>
+to terminate the recording. If you want to record for a specific duration,
+you can use the <em class="xref std std-option">--duration</em> option to specify the number of seconds:</p>
+<div class="highlight-python"><pre>$ sense_rec --duration 10 short_experiment.hat</pre>
+</div>
+<p>This tool can be run simultaneously with scripts that use the Sense HAT. Simply
+start your script in one terminal, then open another to start
+<strong class="program">sense_rec</strong>. Alternatively, you can use the shell&#8217;s job control
+facilities to start recording in the background:</p>
+<div class="highlight-python"><pre>$ sense_rec experiment.hat &amp;
+$ python experiment.py
+...
+$ kill %1</pre>
+</div>
+<p>If <tt class="file docutils literal"><span class="pre">-</span></tt> is specified as the output file, <strong class="program">sense_rec</strong> will write
+its output to stdout. This can be used to reduce the disk space required for
+long output by piping the output through a compression tool like
+<strong class="program">gzip</strong>:</p>
+<div class="highlight-python"><pre>$ sense_rec - | gzip -c - &gt; experiment.hat.gz</pre>
+</div>
+<p>When compressed in this manner the data typically uses approximately 3Kb per
+second (without <strong class="program">gzip</strong> the recording will use approximately 10Kb of
+disk space per second). Use <strong class="program">gunzip</strong> to de-compress the data for
+playback or analysis:</p>
+<div class="highlight-python"><pre>$ gunzip -c experiment.hat.gz | sense_play -</pre>
+</div>
+<p>Alternatively, you can use this in conjunction with <strong class="program">sense_csv</strong> to
+produce CSV output directly:</p>
+<div class="highlight-python"><pre>$ sense_rec - | sense_csv - experiment.csv</pre>
+</div>
+<p>Be warned that CSV data is substantially larger than the binary format (CSV
+data uses approximately 25Kb per second).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sense_rec</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sense_emu_gui.html"
+                        title="previous chapter">Sense Emulator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sense_play.html"
+                        title="next chapter">sense_play</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/sense_rec.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_play.html" title="sense_play"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sense_emu_gui.html" title="Sense Emulator"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

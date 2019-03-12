@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/libraw10
+/usr/share/doc/libraw10/changelog.gz
+/usr/share/doc/libraw10/copyright
+/usr/share/doc/libraw10/changelog.Debian.gz
+/usr/lib
+/usr/lib/arm-linux-gnueabihf
+/usr/lib/arm-linux-gnueabihf/libraw.so.10.0.0
+/usr/lib/arm-linux-gnueabihf/libraw_r.so.10.0.0
+/usr/lib/arm-linux-gnueabihf/libraw.so.10
+/usr/lib/arm-linux-gnueabihf/libraw_r.so.10

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+dpkg-divert --package nuscratch --divert /usr/bin/scratch.old --rename /usr/bin/scratch
+dpkg-divert --package nuscratch --divert /usr/bin/squeak.old --rename /usr/bin/squeak
+dpkg-divert --package nuscratch --divert /usr/share/scratch/locale/ja_HIRA.po.old --rename /usr/share/scratch/locale/ja_HIRA.po
+dpkg-divert --package nuscratch --divert /usr/share/scratch/locale/ja.po.old --rename /usr/share/scratch/locale/ja.po
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/udev/rules.d/40-scratch.rules 20160915+1 -- "$@"
+# End automatically added section
+

@@ -1,0 +1,1 @@
+../../../../../../../share/pyshared/sense_emu/locale/en_US/LC_MESSAGES/sense-emu.mo

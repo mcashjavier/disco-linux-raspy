@@ -1,0 +1,1 @@
+../../../../share/pyshared/gpiozero/input_devices.py

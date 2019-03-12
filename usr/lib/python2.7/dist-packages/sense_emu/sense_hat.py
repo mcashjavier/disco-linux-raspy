@@ -1,0 +1,1 @@
+../../../../share/pyshared/sense_emu/sense_hat.py

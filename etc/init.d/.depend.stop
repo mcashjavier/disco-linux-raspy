@@ -1,0 +1,9 @@
+TARGETS = dhcpcd hostapd triggerhappy fake-hwclock iot dnsmasq avahi-daemon lightdm bluetooth urandom alsa-utils plymouth sendsigs rsyslog umountnfs.sh rpcbind nfs-common hwclock.sh networking umountfs umountroot halt reboot
+sendsigs: plymouth hostapd iot triggerhappy avahi-daemon lightdm alsa-utils bluetooth dnsmasq
+rsyslog: sendsigs iot avahi-daemon bluetooth dnsmasq
+umountnfs.sh: plymouth hostapd rsyslog sendsigs iot triggerhappy avahi-daemon lightdm alsa-utils bluetooth dnsmasq
+networking: umountnfs.sh rpcbind dnsmasq
+umountfs: umountnfs.sh dhcpcd urandom plymouth rpcbind networking hostapd iot triggerhappy avahi-daemon hwclock.sh lightdm alsa-utils bluetooth dnsmasq
+umountroot: umountfs fake-hwclock
+halt: umountroot
+reboot: umountroot

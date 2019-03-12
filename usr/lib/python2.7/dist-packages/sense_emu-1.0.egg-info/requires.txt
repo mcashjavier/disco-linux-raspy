@@ -1,0 +1,1 @@
+../../../../share/pyshared/sense_emu-1.0.egg-info/requires.txt

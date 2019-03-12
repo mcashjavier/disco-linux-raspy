@@ -1,0 +1,7 @@
+[Added Associations]
+application/octet-stream=leafpad.desktop;
+video/mp4=gpicview.desktop;
+text/x-python=userapp-python3.4-ZPYR4Y.desktop;
+
+[Default Applications]
+text/x-python=userapp-python3.4-ZPYR4Y.desktop

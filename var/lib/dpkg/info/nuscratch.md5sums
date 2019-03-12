@@ -1,0 +1,39 @@
+6b2b8e601a19f2d6849cf20b362013d1  lib/udev/rules.d/40-scratch.rules
+6560391ddde9bf212398c4a196fb1353  usr/bin/scratch
+b00daad9d1ebda186b7b88a9e3eca087  usr/bin/squeak
+b188901abc15cc399b094fdc569dfaa2  usr/lib/libpigpioultrasonic.so.1
+9204e6ce938ae1f4fcda41826228588a  usr/lib/squeak/5.0-201610101924/ImmX11Plugin
+f04e9e0441f1018174efcae54cf91dc6  usr/lib/squeak/5.0-201610101924/LocalePlugin
+bfbf1a241f54c790415d04739251e41c  usr/lib/squeak/5.0-201610101924/SqueakFFIPrims
+05540a221e1997ccfc5cf6e957be11ce  usr/lib/squeak/5.0-201610101924/SqueakSSL
+b34a9ac4def849a100185900b19b1cd8  usr/lib/squeak/5.0-201610101924/UUIDPlugin
+1fd3e0e77e8446a44acb61c92d805367  usr/lib/squeak/5.0-201610101924/UnicodePlugin
+50dd4c6c28024105bcdc42e73e8177c7  usr/lib/squeak/5.0-201610101924/UnixOSProcessPlugin
+e9f811fa27359584e68e7976e3875459  usr/lib/squeak/5.0-201610101924/WeDoPlugin
+9bf2f44fccfbd0e171fef60194841afa  usr/lib/squeak/5.0-201610101924/XDisplayControlPlugin
+9070f2d42029800ef2abe3ec6663c76e  usr/lib/squeak/5.0-201610101924/squeak
+bd09747ce39f61a91e8320ad7cbfb5c8  usr/lib/squeak/5.0-201610101924/vm-display-X11
+a148e610332c780415325022dca475e6  usr/lib/squeak/5.0-201610101924/vm-display-null
+a9e2f490bec606e973ffb2453d2f8ddc  usr/lib/squeak/5.0-201610101924/vm-sound-ALSA
+071295334355be845e07c4a5d86fcb47  usr/lib/squeak/5.0-201610101924/vm-sound-OSS
+af025e184edd13ac5cfa2c95d389bfa8  usr/lib/squeak/5.0-201610101924/vm-sound-null
+dd28d957451fc46fec1af252f4ed2c1f  usr/share/doc/nuscratch/changelog.gz
+c2fb88bb02cc55373343eacaebf3e39f  usr/share/scratch/NuScratch20161212.image
+50f01ac27840ab48c8edb89191e1069b  usr/share/scratch/Projects/Demos/Asteroid Blaster.sb
+4f4b7ce56ab119ae90a227a75358c5de  usr/share/scratch/Projects/Demos/Pacman for Scratch.sb
+28d2d42b3fabcd358a4936cce16ca07a  usr/share/scratch/Projects/Demos/Scratch Invaders.sb
+b39df2f4be604083996aa87aa7d0f739  usr/share/scratch/Projects/Sensors and Motors/gpio-DS18B20temperaturegraph.sb
+93f091a7cd1190257c64de593fc09022  usr/share/scratch/Projects/Sensors and Motors/gpio-ExplorerHAT.sb
+d0809b1619adf59e2cc07f57a2b9279c  usr/share/scratch/Projects/Sensors and Motors/gpio-PiFace.sb
+0e801fb12ed40956068ff5ec2197fc35  usr/share/scratch/Projects/Sensors and Motors/gpio-PiGlow.sb
+643fb74c7bc4c1664573499251e0f32c  usr/share/scratch/Projects/Sensors and Motors/gpio-SenseHAT.sb
+fb46ba527b781f2d4402b3bd1364e746  usr/share/scratch/Projects/Sensors and Motors/gpio-citytemperaturegraph.sb
+b97de6cd53608be6d6dd79f9a6518521  usr/share/scratch/Projects/Sensors and Motors/gpio-cputemperaturegraph.sb
+a7554f20d744346271fed9fb9a6dcea7  usr/share/scratch/Projects/Sensors and Motors/gpio-demo.sb
+2a07e3835eed026b6632ea2aa9965f28  usr/share/scratch/Projects/Sensors and Motors/gpio-pibrella.sb
+3460c6b16d98a221d4b5506ccbcc50b1  usr/share/scratch/Projects/Sensors and Motors/gpio-servoDemo.sb
+94167d575e4d33b244e66cfe046ebb38  usr/share/scratch/Projects/Sensors and Motors/gpio-ultrasonicDemo.sb
+4b178e80ea39aa7c248f6167455d402f  usr/share/scratch/Projects/Sensors and Motors/gpio-ultrasonicIntruderAlarm.sb
+d3e3baf606a4afab0eee73ad76ef7430  usr/share/scratch/locale/ja.po
+a21a798d59e523b4d4c27efcb40442e6  usr/share/scratch/locale/ja_HIRA.po
+b33560d64bcacc71313cc3ff460c2e58  usr/share/scratch/timidityinstall.sh

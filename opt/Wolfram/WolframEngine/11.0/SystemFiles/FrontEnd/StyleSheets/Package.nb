@@ -1,0 +1,198 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5672,        190]
+NotebookOptionsPosition[      4032,        152]
+NotebookOutlinePosition[      4552,        172]
+CellTagsIndexPosition[      4509,        169]
+MenuPosition->0
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Style Definition for Packages", "Title"],
+
+Cell[StyleData[StyleDefinitions -> "Default.nb"]],
+
+Cell[StyleData[All, "Working"],
+ CellInsertionPointCell->None,
+ InitializationCellEvaluation->False,
+ DockedCells->FEPrivate`FrontEndResource["FEExpressions", "PackageToolbar"],
+ DefaultNewCellStyle->"Code",
+ ShowPredictiveInterface->False],
+
+Cell[StyleData["Notebook"],
+ CellBracketOptions->{"Color"->GrayLevel[0.65]},
+ CodeAssistOptions->{"AutoConvertEnable"->False},
+ TranslationOptions->{"Language"->None},
+ Background->GrayLevel[0.962]],
+
+Cell[StyleData["Title"],
+ ShowGroupOpener->False,
+ FontColor->GrayLevel[0.3]],
+
+Cell[StyleData["Section"],
+ ShowGroupOpener->True,
+ FontColor->RGBColor[
+  0.1399099717708095, 0.5224231326771954, 0.6501869230182346]],
+
+Cell[StyleData["Subsection"],
+ CellDingbat->None,
+ ShowGroupOpener->True],
+
+Cell[StyleData["Subsubsection"],
+ CellDingbat->None,
+ ShowGroupOpener->True],
+
+Cell[StyleData["Code"],
+ CellMargins->{{66, Inherited}, {Inherited, Inherited}},
+ CellFrameLabelMargins->{{17, Inherited}, {Inherited, Inherited}},
+ FontSize->13,
+ FontWeight->Plain],
+
+Cell[StyleData["Input"],
+ CellMargins->{{66, Inherited}, {Inherited, Inherited}},
+ CellFrameLabelMargins->{{17, Inherited}, {Inherited, Inherited}},
+ FontSize->13],
+
+Cell[StyleData["Output"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5,
+ FontSize->13,
+ FontColor->GrayLevel[0.3]],
+
+Cell[StyleData["Message"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5],
+
+Cell[StyleData["Print"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5,
+ FontColor->GrayLevel[0.3]],
+
+Cell[StyleData["InformationCell"],
+ CellBracketOptions->{"Color"->RGBColor[0.760174, 0.600641, 0.675288]},
+ FontColor->GrayLevel[0.3]],
+
+Cell[StyleData["InformationLink"],
+ FontColor->RGBColor[0.4525, 0.48138, 0.7]],
+
+Cell[StyleData["InformationLinkLF"],
+ FontColor->RGBColor[0.4525, 0.48138, 0.7]],
+
+Cell[StyleData["CellLabel"],
+ CellLabelMargins->{{12, Inherited}, {Inherited, Inherited}},
+ LanguageCategory->None,
+ StyleMenuListing->None,
+ FontFamily->"Helvetica",
+ FontSize->9,
+ FontColor->GrayLevel[0.55]],
+
+Cell[StyleData["InitializationCell"],
+ CellFrame->1,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellFrameMargins->{{10, 10}, {5, 5}},
+ CellFrameColor->RGBColor[{0.85, 0.85, 0.86}],
+ CellFrameLabelMargins->-5,
+ Background->GrayLevel[1]]
+}, Open  ]]
+},
+WindowSize->{681, 717},
+WindowMargins->{{Automatic, 285}, {Automatic, 30}},
+WindowFrame->"Normal",
+DockedCells->FEPrivate`FrontEndResource[
+ "FEExpressions", "BuiltInStylesheetToolbar"],
+TrackCellChangeTimes->False,
+MenuSortingValue->None,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 10, 2016)",
+StyleDefinitions->"StylesheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[596, 23, 46, 0, 73, "Title"],
+Cell[645, 25, 49, 0, 40, 49, 0, "StyleData", "StyleDefinitions", ""],
+Cell[697, 27, 240, 5, 40, 31, 0, "StyleData", "All", "Working"],
+Cell[940, 34, 198, 4, 56, 27, 0, "StyleData", "Notebook", "All"],
+Cell[1141, 40, 77, 2, 107, 24, 0, "StyleData", "Title", "All"],
+Cell[1221, 44, 135, 3, 80, 26, 0, "StyleData", "Section", "All"],
+Cell[1359, 49, 73, 2, 52, 29, 0, "StyleData", "Subsection", "All"],
+Cell[1435, 53, 76, 2, 45, 32, 0, "StyleData", "Subsubsection", "All"],
+Cell[1514, 57, 182, 4, 56, 23, 0, "StyleData", "Code", "All"],
+Cell[1699, 63, 163, 3, 40, 24, 0, "StyleData", "Input", "All"],
+Cell[1865, 68, 479, 18, 40, 25, 0, "StyleData", "Output", "All"],
+Cell[2347, 88, 437, 16, 38, 26, 0, "StyleData", "Message", "All"],
+Cell[2787, 106, 463, 17, 40, 24, 0, "StyleData", "Print", "All"],
+Cell[3253, 125, 134, 2, 68, 34, 0, "StyleData", "InformationCell", "All"],
+Cell[3390, 129, 78, 1, 40, 34, 0, "StyleData", "InformationLink", "All"],
+Cell[3471, 132, 80, 1, 40, 36, 0, "StyleData", "InformationLinkLF", "All"],
+Cell[3554, 135, 209, 6, 37, 28, 0, "StyleData", "CellLabel", "All",
+ StyleMenuListing->None],
+Cell[3766, 143, 250, 6, 52, 37, 0, "StyleData", "InitializationCell", "All"]
+}, Open  ]]
+}
+]
+*)
+

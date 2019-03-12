@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/win_tool.py

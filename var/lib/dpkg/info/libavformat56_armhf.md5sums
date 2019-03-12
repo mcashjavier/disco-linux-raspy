@@ -1,0 +1,8 @@
+af888ec1f221a0a3d4b2f1e81354a59a  usr/lib/arm-linux-gnueabihf/libavformat.so.56.1.0
+8521221dd8300f3308405f8c57451b17  usr/lib/arm-linux-gnueabihf/neon/vfp/libavformat.so.56.1.0
+7906be10ad1a6590b1828dca02678003  usr/share/doc/libavformat56/NEWS.Debian.gz
+bd5c36876cd8f09894e0a5ca47ffc28f  usr/share/doc/libavformat56/changelog.Debian.gz
+f39e8101b663615802975c50952c2870  usr/share/doc/libavformat56/changelog.gz
+323125fc98bc748defccc624b74fd752  usr/share/doc/libavformat56/copyright
+249898c237b1703d60df33101c16be5f  usr/share/doc/libavformat56/formats-armhf.txt.gz
+f4545a9f5b0b8fc2bafcca455cb46d3e  usr/share/lintian/overrides/libavformat56

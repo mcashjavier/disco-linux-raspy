@@ -1,0 +1,6 @@
+317ce1c44198859861d2ae454567af8a  usr/bin/lxde-pi-shutdown-helper
+e0611f61b835e0d207e3e2fbe882f494  usr/share/doc/pishutdown/changelog.gz
+6b8c937d8e44271e34bd2c959920fbe2  usr/share/doc/pishutdown/copyright
+6dcba5dcedbcf0021cca483dfcac75df  usr/share/lintian/overrides/pishutdown
+ccefad221a7494445ce1fc530c3c5da6  usr/share/locale/de/LC_MESSAGES/pishutdown.mo
+c7954275241e24f6a88c6f45d043c921  usr/share/locale/en_GB/LC_MESSAGES/pishutdown.mo

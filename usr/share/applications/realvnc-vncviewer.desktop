@@ -1,0 +1,25 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=VNC Viewer
+Name[de]=VNC Viewer
+Name[es]=VNC Viewer
+Name[fr]=VNC Viewer
+GenericName=VNC Viewer
+Comment=Connect to computers running VNC Server
+Comment[de]=Verbindung zu Computern mit aktivem VNC Server herstellen
+Comment[es]=Conectarse a equipos que ejecutan VNC Server
+Comment[fr]=Connecter les ordinateurs sous VNC Server
+Exec=vncviewer %f
+Type=Application
+Icon=/usr/share/icons/hicolor/48x48/apps/vncviewer48x48.png
+Categories=Application;Network;RemoteAccess;
+MimeType=application/vnc-shortcut
+X-Ayatana-Desktop-Shortcuts=NewConnection
+
+[NewConnection Shortcut Group]
+Name=New Connection
+Name[de]=Neue Verbindung
+Name[es]=Nueva conexión
+Name[fr]=Nouvelle connexion
+Exec=vncviewer
+TargetEnvironment=Unity

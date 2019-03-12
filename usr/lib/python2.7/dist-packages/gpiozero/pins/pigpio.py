@@ -1,0 +1,1 @@
+../../../../../share/pyshared/gpiozero/pins/pigpio.py

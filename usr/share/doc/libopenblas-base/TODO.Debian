@@ -1,0 +1,5 @@
+* disable the download of lapack and use the one from debian
+* update copyright
+* update homepage
+* write some doc about update-alternatives
+* write a debconf alert about the fact that a rebuild will improve the perf

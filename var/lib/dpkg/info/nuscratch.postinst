@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+case "${1}" in
+  configure)
+  ldconfig
+    if dpkg --compare-versions "${2}" lt "20160915+1"; then
+      echo "This update requires a reboot."
+    fi
+    ;;
+
+  abort-upgrade|abort-remove|abort-deconfigure)
+
+    ;;
+
+  *)
+    echo "postinst called with unknown argument \`${1}'" >&2
+    exit 1
+    ;;
+esac
+
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/udev/rules.d/40-scratch.rules 20160915+1 -- "$@"
+# End automatically added section
+

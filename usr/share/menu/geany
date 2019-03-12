@@ -1,0 +1,4 @@
+?package(geany):needs="X11" section="Applications/Programming" \
+	hints="IDE,Small,Gtk" \
+	icon="/usr/share/pixmaps/geany.xpm" \
+  title="Geany" command="/usr/bin/geany"

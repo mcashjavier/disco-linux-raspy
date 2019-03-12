@@ -1,0 +1,8 @@
+35bd250fb54958e3228482b64d30a90c  usr/bin/pipanel
+cef5762d5d1da79cb36f706bb9d937c4  usr/share/applications/pipanel.desktop
+2085a4249f32f25a462fb2a50568be42  usr/share/doc/pipanel/changelog.gz
+83a7c4efb8f6e1528452fbe27175aac6  usr/share/doc/pipanel/copyright
+10f88b7c2a8232fb5e8af85074178570  usr/share/lintian/overrides/pipanel
+2c7ac05d409a04022b06c63a14cbf8ca  usr/share/locale/en_GB/LC_MESSAGES/pipanel.mo
+e0a992822df052f6fe72df7e77858833  usr/share/locale/zh_TW/LC_MESSAGES/pipanel.mo
+8907f7bb28e9c9207cd61aee1720d425  usr/share/pipanel/pipanel.ui

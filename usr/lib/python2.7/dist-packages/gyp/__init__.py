@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/__init__.py

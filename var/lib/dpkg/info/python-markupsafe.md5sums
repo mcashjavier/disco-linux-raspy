@@ -1,0 +1,13 @@
+8dce875316bca4f37c1a7524f5dfe8f8  usr/lib/python2.7/dist-packages/markupsafe/_speedups.so
+abe10eed9ad927725f502829f31efb25  usr/share/doc/python-markupsafe/changelog.Debian.gz
+3744af2279f14686bcee9db60e24e75d  usr/share/doc/python-markupsafe/copyright
+7ede136db046c403f06c7704ded35a9f  usr/share/pyshared/MarkupSafe-0.23.egg-info/PKG-INFO
+850838e185ce6a82a7cf2f2acb8fe366  usr/share/pyshared/MarkupSafe-0.23.egg-info/SOURCES.txt
+68b329da9893e34099c7d8ad5cb9c940  usr/share/pyshared/MarkupSafe-0.23.egg-info/dependency_links.txt
+68b329da9893e34099c7d8ad5cb9c940  usr/share/pyshared/MarkupSafe-0.23.egg-info/not-zip-safe
+5862354c9fbb5b15204672c79808e25c  usr/share/pyshared/MarkupSafe-0.23.egg-info/top_level.txt
+25d1b407fd8bc06b05fe2e05576af586  usr/share/pyshared/markupsafe/__init__.py
+c0dfe0b27e175b17d5e35171b31056ff  usr/share/pyshared/markupsafe/_compat.py
+b58b1233567f885d78e73de91c95283a  usr/share/pyshared/markupsafe/_constants.py
+fd769add6002b38bfaff3996475bacb6  usr/share/pyshared/markupsafe/_native.py
+8ecb90ab57a36f7485c693fd8b4f456a  usr/share/pyshared/markupsafe/tests.py

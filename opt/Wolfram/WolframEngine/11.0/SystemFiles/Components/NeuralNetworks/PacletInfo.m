@@ -1,0 +1,40 @@
+Paclet[
+	Name -> "NeuralNetworks",
+	Version -> "1.0.0",
+	MathematicaVersion -> "10+",
+	Description -> "Neural Network functionality",
+	Creator -> "Taliesin Beynon <taliesinb@wolfram.com>, Sebastian Bodenstein <sebastianb@wolfram.com>",
+	Loading -> Automatic,
+	Extensions -> {
+		{"Resource", Root -> "Resources", Resources -> {"Libraries", "LuaSource"}},
+		{"Kernel", Root -> "Kernel", Context -> {"NeuralNetworks`"}, HiddenImport -> True, Symbols -> {
+			"System`NetInitialize",
+			"System`NetPort",
+			"System`NetTrain", "System`BatchSize", "System`MaxTrainingRounds", "System`TargetDevice", 
+			"System`NetGraph",
+			"System`NetChain",
+			"System`NetExtract",
+			"System`NetEncoder",
+			"System`NetDecoder",
+			"System`ElementwiseLayer",
+			"System`BatchNormalizationLayer",
+			"System`ConvolutionLayer",
+			"System`CrossEntropyLossLayer",
+			"System`DeconvolutionLayer",
+			"System`DropoutLayer",
+			"System`EmbeddingLayer",
+			"System`FlattenLayer",
+			"System`DotPlusLayer",
+			"System`CatenateLayer",
+			"System`MeanSquaredLossLayer",
+			"System`MeanAbsoluteLossLayer",
+			"System`TotalLayer",
+			"System`PoolingLayer",
+			"System`ReshapeLayer",
+			"System`SoftmaxLayer",
+			"System`SummationLayer",
+			"NeuralNetworks`WLNetExport",
+			"NeuralNetworks`WLNetImport"
+		}}
+	}
+]

@@ -1,0 +1,717 @@
+#! /usr/bin/python
+# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
+### BEGIN LICENSE
+# Copyright (C) 2010 Leszek Lesner leszek@zevenos.com
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+# PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+### END LICENSE
+
+import sys
+import os
+import logging
+import optparse
+import subprocess
+
+import gtk
+import gobject
+import xklavier
+import ConfigParser
+import dbus
+
+import gettext
+from gettext import gettext as _
+gettext.textdomain('lxkeymap')
+
+# Getting Home User Path for storing configuration file
+homedir = os.path.expanduser('~')
+
+# optional Launchpad integration
+# this shouldn't crash if not found as it is simply used for bug reporting
+try:
+    import LaunchpadIntegration
+    launchpad_available = True
+except:
+    launchpad_available = False
+
+# Add project root directory (enable symlink, and trunk execution).
+PROJECT_ROOT_DIRECTORY = os.path.abspath(
+    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
+
+python_path = []
+if os.path.abspath(__file__).startswith('/opt'):
+    syspath = sys.path[:] # copy to avoid infinite loop in pending objects
+    for path in syspath:
+        opt_path = path.replace('/usr', '/opt/extras.ubuntu.com/lxkeymap')
+        python_path.insert(0, opt_path)
+        sys.path.insert(0, opt_path)
+if (os.path.exists(os.path.join(PROJECT_ROOT_DIRECTORY, 'lxkeymap'))
+    and PROJECT_ROOT_DIRECTORY not in sys.path):
+    python_path.insert(0, PROJECT_ROOT_DIRECTORY)
+    sys.path.insert(0, PROJECT_ROOT_DIRECTORY)
+if python_path:
+    os.putenv('PYTHONPATH', "%s:%s" % (os.getenv('PYTHONPATH', ''), ':'.join(python_path))) # for subprocesses    os.putenv('PYTHONPATH', PROJECT_ROOT_DIRECTORY) # for subprocesses
+
+from lxkeymap import (
+    AboutLxkeymapDialog, PreferencesLxkeymapDialog)
+from lxkeymap.helpers import get_builder
+
+
+class LxkeymapWindow(gtk.Window):
+    __gtype_name__ = "LxkeymapWindow"
+
+    # To construct a new instance of this method, the following notable
+    # methods are called in this order:
+    # __new__(cls)
+    # __init__(self)
+    # finish_initializing(self, builder)
+    # __init__(self)
+    #
+    # For this reason, it's recommended you leave __init__ empty and put
+    # your inialization code in finish_intializing
+
+    def __new__(cls):
+        """Special static method that's automatically called by Python when
+        constructing a new instance of this class.
+
+        
+
+        Returns a fully instantiated LxkeymapWindow object.
+        """
+        builder = get_builder('LxkeymapWindow')
+        new_object = builder.get_object("lxkeymap_window")
+        new_object.finish_initializing(builder)
+        return new_object
+
+
+    def finish_initializing(self, builder):
+        """Called while initializing this instance in __new__
+
+        finish_initalizing should be called after parsing the UI definition
+        and creating a LxkeymapWindow object with it in order to finish
+        initializing the start of the new LxkeymapWindow instance.
+
+        Put your initilization code in here and leave __init__ undefined.
+        """
+        # Get a reference to the builder and set up the signals.
+        self.builder = builder
+        self.builder.connect_signals(self)
+
+        global launchpad_available
+        if launchpad_available:
+            # see https://wiki.ubuntu.com/UbuntuDevelopment/Internationalisation/Coding for more information
+            # about LaunchpadIntegration
+            helpmenu = self.builder.get_object('helpMenu')
+            if helpmenu:
+                LaunchpadIntegration.set_sourcepackagename('lxkeymap')
+                LaunchpadIntegration.add_items(helpmenu, 0, False, True)
+            else:
+                launchpad_available = False
+
+        # Uncomment the following code to read in preferences at start up.
+        #dlg = PreferencesLxkeymapDialog.PreferencesLxkeymapDialog()
+        #self.preferences = dlg.get_preferences()
+
+        self.nodeadkey = builder.get_object("nodeadkeys")
+
+        #List of nodeadkeys variants
+        # TODO find a property in each variant ?
+        self.nodeadkeys_list = ("nodeadkeys", "oss_nodeadkeys", "latin9_nodeadkeys")
+
+        # Setting default section here
+        self.section = 'Global'
+
+        #Get current layout
+        server = xklavier.ConfigRec()
+        display = gtk.gdk.display_get_default()
+        engine = xklavier.Engine(display)
+        configreg = xklavier.ConfigRegistry(engine)
+        configreg.load(False)
+        server.get_from_server(engine)
+        	
+        engine.start_listen(xklavier.XKLL_TRACK_KEYBOARD_STATE)
+        state = engine.get_current_state()
+        active_group = state['group']
+
+        self.layout_current = server.get_layouts()#[active_group] # We handle now multiple layouts
+        self.variant_current = server.get_variants()#[active_group]
+        if self.variant_current == []:
+            self.variant_current = ['']
+
+        # Get options here
+        self.options_current = server.get_options()
+        self.options_current = dict(map(lambda i: (i,1),self.options_current)).keys()
+
+        engine.stop_listen(xklavier.XKLL_TRACK_KEYBOARD_STATE)
+
+        self.init_config_parser()
+
+        # Create a TreeStore with one string column to use as the model
+        self.treestore_profiles = gtk.TreeStore(str)
+        self.treestore_profiles.append(None,["Global"])
+        self.treeview_profiles = gtk.TreeView(self.treestore_profiles)
+        self.column_profiles = gtk.TreeViewColumn('profiles')
+        self.treeview_profiles.set_headers_visible(False)
+        self.treeview_profiles.append_column(self.column_profiles)
+        self.cell = gtk.CellRendererText()
+        self.column_profiles.pack_start(self.cell, True)
+        self.column_profiles.add_attribute(self.cell, "text", 0)
+        self.treeview_profiles.set_search_column(0)
+        self.scrolledwindow_profiles = builder.get_object("scrolledwindow_profiles")
+        self.scrolledwindow_profiles.add(self.treeview_profiles)
+        #self.treeview_profiles.connect("cursor-changed", self.on_profile_click)
+        self.treeview_profiles.connect("row-activated", self.on_profile_doubleclick)
+        selection = self.treeview_profiles.get_selection()
+        selection.select_path(0)
+        self.treeview_profiles.show()
+
+        # Load all profiles here
+        print "Sections: " + str(self.config.sections())
+        for i in self.config.sections():
+            if (i != "Global"):
+                self.treestore_profiles.append(None,[i])
+        print "Layouts: " + str(self.layout_current) + "\nVariants: " + str(self.variant_current) + "\nOptions: " + str(self.options_current) # DEBUG
+
+        
+
+        # Saved the current layout for restore
+        self.layout_saved = self.layout_current
+        self.variant_saved = self.variant_current
+
+        self.treestore_layout = gtk.TreeStore(str, str)
+
+        self.country_list = []
+        configreg.foreach_country(self.construct_country)
+
+        self.country_list.sort()
+
+        for item in self.country_list:
+            self.treestore_layout.append(None, [item[0], item[1]])
+
+        self.treeview_layout = gtk.TreeView(self.treestore_layout)
+        self.tvcolumn_layout = gtk.TreeViewColumn('keymap')
+        self.treeview_layout.set_headers_visible(False)
+        self.treeview_layout.append_column(self.tvcolumn_layout)
+
+        self.cell = gtk.CellRendererText()
+        self.tvcolumn_layout.pack_start(self.cell, True)
+        self.tvcolumn_layout.add_attribute(self.cell, "text", 0)
+
+        self.treeview_layout.set_search_column(0)
+
+        # Focus to saved layout
+        self.model_layout = self.treeview_layout.get_model()
+        self.selection_layout = self.treeview_layout.get_selection()
+        self.model_layout.foreach(self.return_path, self.layout_saved[-1])
+        self.selection_layout.select_path(self.default_path)
+        self.treeview_layout.scroll_to_cell(self.default_path, None, False, 0.0, 0.0)
+        (self.model_layout, iter) = self.selection_layout.get_selected()
+        self.country_selected = self.model_layout.get_value(iter, 1)
+
+        #self.treeview_layout.connect("realize", self.on_country_click)
+        self.treeview_layout.connect("cursor-changed", self.on_country_click)
+
+        self.scrolledwindow_layout = builder.get_object("scrolledwindow_layout")
+
+        self.scrolledwindow_layout.add(self.treeview_layout)
+        self.treeview_layout.show()
+
+        self.treestore_variant = gtk.TreeStore(str, str)
+        self.treeview_variant = gtk.TreeView(self.treestore_variant)
+        self.tvcolumn_variant = gtk.TreeViewColumn('variant')
+        self.treeview_variant.set_headers_visible(False)
+        self.treeview_variant.append_column(self.tvcolumn_variant)
+        self.cell_variant = gtk.CellRendererText()
+        self.tvcolumn_variant.pack_start(self.cell_variant, True)
+        self.tvcolumn_variant.add_attribute(self.cell_variant, "text", 0)
+
+        self.treeview_variant.hide()
+        self.treestore_variant.clear()
+        configreg.foreach_country(self.return_layout)
+        self.treeview_variant.show()
+        self.show_variant()
+
+        self.scrolledwindow_variant = builder.get_object("scrolledwindow_variant")
+
+        self.treeview_variant.connect("cursor-changed", self.on_variant_click)
+
+        self.scrolledwindow_variant.add(self.treeview_variant)
+        self.treeview_variant.show()
+
+        self.button_ok = builder.get_object("button_ok")
+        self.button_ok.connect("clicked", self.on_click_ok)
+
+        self.button_cancel = builder.get_object("button_cancel")
+        self.button_cancel.connect("clicked", self.on_click_cancel)
+
+        # Show profiles as default configuration if there exists more than one section
+        self.profileVbox = builder.get_object("profileVbox")
+        #self.profileVbox.hide()
+        j=0
+        for i in self.config.sections():
+        	j=j+1
+        if (j > 1): 
+            self.scrolledwindow_layout.hide()
+            self.scrolledwindow_variant.hide()
+        else:
+            self.profileVbox.hide()
+
+        self.status = builder.get_object("statuslbl")
+        if not len(self.variant_current) == 0:
+            print self.config.sections() # DEBUG
+            j=0
+            for i in self.config.sections():
+                j=j+1
+            if (j > 1):
+                self.status.set_text(_("Current Keymap: %s(%s) (Multiple Keymaps)") % (self.layout_current[0], self.variant_current[0]))
+            else:
+                self.status.set_text(_("Current Keymap: %s(%s)") % (self.layout_current[0], self.variant_current[0]))
+        else:
+            if (j > 1):
+                self.status.set_text(_("Current Keymap: %s (Multiple Keymaps)") % (self.layout_current[0]))
+            else:
+                self.status.set_text(_("Current Keymap: %s") % (self.layout_current[0]))
+
+    def init_config_parser(self):
+        """Initialize configuration"""
+        self.config = ConfigParser.RawConfigParser()
+        self.nofile = False
+        if not os.path.exists(homedir+'/.config/lxkeymap.cfg'): 
+            self.nofile = True
+            self.config.add_section('Global')
+            try:
+                self.config.set('Global', 'Layout', self.layout_current[0])
+            except:
+                self.config.set('Global', 'Layout', "")
+            
+            try:
+                self.config.set('Global', 'Variant', self.variant_current[0])
+            except IndexError:
+                self.config.set('Global', 'Variant', "")
+            
+            try:
+                self.config.set('Global', 'Option', self.options_current[0])
+            except IndexError:
+                self.config.set('Global', 'Option', "")
+            
+            with open(homedir+'/.config/lxkeymap.cfg', 'wb') as configfile:
+                self.config.write(configfile)
+        self.config.readfp(open(homedir+'/.config/lxkeymap.cfg'))
+        
+    def print_option(self, c_reg, item, parent):
+        #print ('\t %s (%s)' % (item.get_description(), item.get_name())) #DEBUG
+        if item.get_name() in self.options_current: 
+            self.option_categories.append(parent, [item.get_description(), item.get_name(), True])
+        else:
+            self.option_categories.append(parent, [item.get_description(), item.get_name(), False])
+            
+    def on_option_clicked(self, data=None):
+        self.option_window = gtk.Window()
+        self.option_window.set_title(_("Keyboard Options"))
+        self.option_window.set_position(gtk.WIN_POS_CENTER)
+        self.option_window.set_size_request(500, 400)
+        verticalbox = gtk.VBox(False, 10)
+        self.option_window.add(verticalbox)
+        optionhbox = gtk.HBox(False, 10)
+        verticalbox.add(optionhbox)
+        self.ok_aspect = gtk.AspectFrame(label=None, xalign=0.5, yalign=0.5, ratio=1.0, obey_child=True)
+        self.ok_button = gtk.Button("OK")
+        self.ok_button.connect("clicked", self.on_option_ok_clicked)
+        verticalbox.pack_start(self.ok_aspect, expand=False, fill=False, padding=0)
+        self.ok_aspect.add(self.ok_button)
+        scrolled_options = gtk.ScrolledWindow(None,None)
+        optionhbox.add(scrolled_options)
+        # Load option categories here
+        self.option_categories = gtk.TreeStore(gobject.TYPE_STRING,
+                                               gobject.TYPE_STRING,
+                                               gobject.TYPE_BOOLEAN)
+        self.option_groups = []
+        configreg.foreach_option_group(self.construct_options)
+        self.treeview_options = gtk.TreeView(self.option_categories)
+        self.treeview_options.set_headers_visible(False)
+        model = self.treeview_options.get_model()
+        self.column_options = gtk.TreeViewColumn('Keyboard options')
+
+        self.cell = gtk.CellRendererText()
+        self.cell.set_property('editable', False)
+
+        self.celltoggle = gtk.CellRendererToggle()
+        self.celltoggle.set_activatable(True)
+        self.celltoggle.connect("toggled", self.on_option_toggled, model)
+
+        self.column_options.pack_start(self.celltoggle, expand=False)
+        self.column_options.add_attribute(self.celltoggle, "active", 2)
+
+        self.column_options.pack_start(self.cell, expand=True)
+        self.column_options.add_attribute(self.cell, "text", 0)
+
+        self.column_options.set_clickable(True)
+        self.treeview_options.append_column(self.column_options)
+
+        self.treeview_options.set_search_column(0)
+        scrolled_options.add(self.treeview_options)
+        self.option_window.show_all()
+
+    def on_option_toggled(self, cell, path, model):
+        """
+        Sets the toggled state on the toggle button to true or false.
+        """
+        model[path][2] = not model[path][2]
+        print "Toggle '%s' to: %s" % (model[path][1], model[path][2],) # DEBUG
+        if model[path][2] == True:
+            self.options_current.append(model[path][1])
+        elif model[path][2] == False:
+            self.options_current.remove(model[path][1])
+        return
+
+    def on_option_ok_clicked(self, widget):
+        self.option_window.hide()
+
+    def construct_options(self, c_reg, item):
+        #print ('\n%s (%s)' % (item.get_description(), item.get_name())) #DEBUG
+        if item.get_name() in self.options_current: 
+           parent_group=self.option_categories.append(None, [item.get_description(), item.get_name(),True])
+        else:
+           parent_group=self.option_categories.append(None, [item.get_description(), item.get_name(),False])
+        c_reg.foreach_option(item.get_name(), self.print_option,parent_group)
+
+    def construct_country(self, c_reg, item):
+        filename = item.get_name()
+        filepath = "/usr/share/X11/xkb/symbols/" + filename.lower()
+        if (os.path.exists(filepath)):
+            self.country_list.append((item.get_description(), item.get_name()))
+
+    #def return_path (self, model, path, iter, data):
+    #    if model.get_value(iter, 1).lower() == self.layout_saved[-1]:
+    #        self.default_path = path
+
+    def return_path(self,model,path,iter,matched_text):
+        if model.get_value(iter, 1).lower() == matched_text.lower():
+            self.default_path = path
+
+    def generate_variant_list(self):
+        self.treeview_variant.hide()
+        self.treestore_variant.clear()
+        configreg.foreach_country(self.return_layout)
+        self.treeview_variant.show()
+
+    def on_removebtn_clicked(self,widget, data=None):
+        model = self.treeview_profiles.get_model()
+        selection = self.treeview_profiles.get_selection()
+        (model, iter) = selection.get_selected()
+        #self.variant_current =  [model.get_value(iter, 1)]
+        try:
+            self.config.remove_section(model.get_value(iter, 0))
+        except:
+            pass
+        self.treestore_profiles.remove(iter)
+    
+    # Create Profile Functions 
+    def on_addbtn_clicked(self, widget, data=None):
+        """Add a new keyboard layout profile here"""
+        newSection = self.getText()
+        if len(newSection) == 0:
+                pass
+        else:
+                self.treestore_profiles.append(None,[newSection])
+
+    def responseToDialog(self, entry, dialog, response):
+        dialog.response(response)
+
+    def getText(self):
+        #base this on a message dialog
+        dialog = gtk.MessageDialog(
+                None,
+                gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                gtk.MESSAGE_QUESTION,
+                gtk.BUTTONS_OK,
+                None)
+        dialog.set_markup('Please enter the <b>profilename</b>:')
+        #create the text input field
+        entry = gtk.Entry()
+        #allow the user to press enter to do ok
+        entry.connect("activate", self.responseToDialog, dialog, gtk.RESPONSE_OK)
+        #create a horizontal box to pack the entry and a label
+        hbox = gtk.HBox()
+        hbox.pack_start(gtk.Label("Name:"), False, 5, 5)
+        hbox.pack_end(entry)
+        #some secondary text
+        dialog.format_secondary_markup("This will be used for configuration purposes")
+        #add it and show it
+        dialog.vbox.pack_end(hbox, True, True, 0)
+        dialog.show_all()
+        #go go go
+        dialog.run()
+        text = entry.get_text()
+        dialog.destroy()
+        return text
+    ##########################
+
+
+    def on_country_click(self, data=None):
+        model = self.treeview_layout.get_model()
+        selection = self.treeview_layout.get_selection()
+        (model, iter) = selection.get_selected()
+
+        self.country_selected = model.get_value(iter, 1)
+        self.layout_current = [model.get_value(iter, 1).lower()]
+        self.generate_variant_list()
+        self.variant_current = ['']
+        self.show_variant()
+        self.save_configuration()
+        # Apply changes here
+        self.loadFromConfig()
+
+
+    def on_profiles_activate(self,widget):
+        if self.profileVbox.get_visible() == True:
+            self.scrolledwindow_layout.show()
+            self.scrolledwindow_variant.show()
+            self.profileVbox.hide()
+        else:
+            self.scrolledwindow_layout.hide()
+            self.scrolledwindow_variant.hide()
+            self.profileVbox.show()
+
+
+    def return_layout(self, c_reg, item):
+        if item.get_name() == self.country_selected:
+            c_reg.foreach_country_variant(item.get_name(), self.print_variant)
+
+
+    def print_variant(self, c_reg, item, subitem):
+        if subitem:
+            #print ('\t\t %s (%s)' % (subitem.get_description(), subitem.get_name()))
+            if self.nodeadkey.get_active() and subitem.get_name() in self.nodeadkeys_list:
+                pass
+            else:
+                self.treestore_variant.append(None, [subitem.get_description(), subitem.get_name()])
+                # TODO: Mark default selection
+        else:
+            #print ('\t\t %s (%s)' % (item.get_description(), item.get_name()))
+            self.treestore_variant.append(None, [item.get_description(), ""])
+
+    def on_variant_click(self, data=None):
+        model = self.treeview_variant.get_model()
+        selection = self.treeview_variant.get_selection()
+        (model, iter) = selection.get_selected()
+        self.variant_current =  [model.get_value(iter, 1)]
+        self.save_configuration()
+        # Apply changes here
+        self.loadFromConfig()
+
+    def save_configuration(self):
+        # Set autostart entry for restoration of keyboard layout
+        try:
+            self.config.add_section(self.section)
+        except: 
+            pass
+        try:
+            self.config.set(self.section, 'Layout', self.layout_current[-1])
+        except AttributeError:
+            config = ConfigParser.RawConfigParser()
+            config.read(homedir+'/.config/lxkeymap.cfg')
+            self.config.set(self.section, 'Layout', config.get('Global','Layout'))
+        try:
+            self.config.set(self.section, 'Variant',self.variant_current[-1])
+        except IndexError:
+            self.config.set(self.section, 'Variant', '')
+        if len(self.options_current) > 0:
+            print self.options_current # DEBUG
+            self.config.set('Global', 'Option', self.options_current[-1])
+        else:
+            self.config.set(self.section, 'Option', '')
+        with open(homedir+'/.config/lxkeymap.cfg', 'wb') as configfile:
+            self.config.write(configfile)
+        self.status_update()
+        self.save_on_lxsession()
+
+    def save_on_lxsession(self):
+        try:
+            bus = dbus.SessionBus()
+            session_service = bus.get_object('org.lxde.SessionManager', '/org/lxde/SessionManager')
+            session_method = session_service.get_dbus_method('KeymapSet', 'org.lxde.SessionManager')
+            session_method ('mode', '', 'user')
+            session_method ('layout', '', self.layout_current[0])
+            session_method ('variant', '', self.variant_current[0])
+            session_method ('options', '', self.options_current[0])
+        except:
+            print ("Unable to save to lxsession")
+
+    def loadFromConfig(self):
+        layout_saved = []
+        variant_saved = []
+        options_saved = []
+        if os.path.exists(homedir+'/.config/lxkeymap.cfg'):
+            config = ConfigParser.RawConfigParser()
+            config.read(homedir+'/.config/lxkeymap.cfg')
+            for i in config.sections():
+                layout_saved.append(config.get(i, 'Layout'))
+                variant_saved.append(config.get(i, 'Variant'))
+                try:
+                    options_saved.append(config.get('Global','Option'))
+                except:
+                    pass
+        self.layout_current = layout_saved
+        self.variant_current = variant_saved
+        self.options_current = options_saved
+        # print self.options_current
+        print "Lxkeymap autostart running..."
+        display = gtk.gdk.display_get_default()
+        engine = xklavier.Engine(display)
+        configreg = xklavier.ConfigRegistry(engine)
+        configreg.load(False)
+        server = xklavier.ConfigRec()
+        server.get_from_server(engine)
+        server.set_layouts(self.layout_current)
+        server.set_variants(self.variant_current)
+        server.set_options(self.options_current)
+        server.activate(engine)
+        
+
+    def on_click_apply(self, data=None):
+        self.save_configuration()
+        # Apply changes here
+        self.loadFromConfig()
+
+    def on_click_restore(self, data=None):
+        self.layout_current = self.layout_saved
+        self.variant_current = self.variant_saved
+        self.save_configuration()
+        self.loadFromConfig()
+        self.country_selected = self.layout_saved[-1].upper()
+        self.model_layout.foreach(self.return_path, self.layout_saved[-1])
+        self.selection_layout.select_path(self.default_path)
+        self.treeview_layout.scroll_to_cell(self.default_path, None, False, 0.0, 0.0)
+        self.generate_variant_list()
+        self.show_variant ()
+
+    def show_variant (self):
+        self.model_variant = self.treeview_variant.get_model()
+        self.selection_variant = self.treeview_variant.get_selection()
+        self.default_path = None
+        self.model_variant.foreach(self.return_path, self.variant_current[-1])
+        self.selection_variant.select_path(self.default_path)
+        self.treeview_variant.scroll_to_cell(self.default_path, None, False, 0.0, 0.0)
+
+    def on_click_cancel(self, data=None):
+        self.layout_current = self.layout_saved
+        self.variant_current = self.variant_saved
+        self.save_configuration()
+        self.loadFromConfig()
+        if self.nofile == True:
+          os.remove (homedir+'/.config/lxkeymap.cfg')
+        gtk.main_quit()
+
+    def on_click_ok(self, data=None):
+        gtk.main_quit()
+
+    def status_update(self):
+        """Update the Statusbar"""
+        # TODO: Make it recognize multiple layouts
+        if not len(self.variant_current) == 0:
+            layout = self.layout_current[0]
+            variant = self.variant_current[0]
+            #print layout  # DEBUG
+            #print variant
+            self.status.set_text(_("Current Keymap: "+ layout + "(" +variant+ ")"))
+        else:
+            self.status.set_text(_("Current Keymap: "+ str(self.layout_current)))
+
+    def about(self, widget, data=None):
+        """Display the about box for lxkeymap."""
+        about = AboutLxkeymapDialog.AboutLxkeymapDialog()
+        response = about.run()
+        about.destroy()
+
+    def on_profile_doubleclick(self,widget,column,data=None):
+        print "Row double clicked. Load profile now..." # DEBUG
+        model = self.treeview_profiles.get_model()
+        selection = self.treeview_profiles.get_selection()
+        (model, iter) = selection.get_selected()
+        self.profile_selected = model.get_value(iter, 0)
+        print "Selected Profile: " + self.profile_selected #DEBUG
+        self.section = self.profile_selected
+        try:
+            self.country_selected = self.config.get(self.profile_selected, 'Layout').upper() # Upper here to get correct variant list as it knows only upper stuff
+        except Exception as exc:
+            logging.info("Can not get Layout from config file, using default `US`")
+            self.country_selected = 'US'
+        self.model_layout.foreach(self.return_path, self.country_selected.lower()) # Get Layout of selected profile
+        self.selection_layout.select_path(self.default_path)
+        self.treeview_layout.scroll_to_cell(self.default_path, None, False, 0.0, 0.0)
+        self.generate_variant_list()
+        self.on_profiles_activate(self)
+
+    def preferences(self, widget, data=None):
+        """Display the preferences window for lxkeymap."""
+        prefs = PreferencesLxkeymapDialog.PreferencesLxkeymapDialog()
+        response = prefs.run()  # TODO: Delete ! Not connected to main gui so not neccessary
+        if response == gtk.RESPONSE_OK:
+            pass
+        prefs.destroy()
+
+    def on_nodeadkeys_toggled(self,widget):
+        self.generate_variant_list()
+        self.show_variant()
+
+    def on_entry1_activate(self,widget):
+        #TODO: if entry == type in here to test delete text. Maybe labelledentry would do better here instead of this.
+        if entry1.get_text() == _("Type here to test your keyboard"):
+            entry1.set_text("")
+
+    def on_showall_activate(self,widget):
+        os.popen("xdg-open /usr/share/X11/xkb/rules/xorg.lst")
+
+    def quit(self, widget, data=None):
+        """Signal handler for closing the LxkeymapWindow."""
+        #TODO Make warning if current layout / variant is different than selected.
+        self.destroy()
+
+    def on_destroy(self, widget, data=None):
+        """Called when the LxkeymapWindow is closed."""
+        # Clean up code for saving application state should be added here.
+        gtk.main_quit()
+
+if __name__ == "__main__":
+
+    def autostart(option, opt_str, value, parser):
+        window = LxkeymapWindow()
+        window.loadFromConfig()
+        sys.exit(0)
+
+    parser = optparse.OptionParser(version="%prog %ver")
+    parser.add_option(
+        "-v", "--verbose", action="store_true", dest="verbose",
+        help=_("show debug messages"))
+    parser.add_option(
+        "-a", "--autostart", action="callback", callback=autostart,
+        help=_(autostart.__doc__))
+    (options, args) = parser.parse_args()
+
+    # Set the logging level to show debug messages.
+    if options.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug('logging enabled')
+
+    #Init xklavier 
+    display = gtk.gdk.display_get_default()
+    engine = xklavier.Engine(display)
+    configreg = xklavier.ConfigRegistry(engine)
+    configreg.load(False)
+    server = xklavier.ConfigRec()
+    server.get_from_server(engine)
+
+    # Run the application.
+    window = LxkeymapWindow()
+    window.loadFromConfig()
+    window.show()
+    gtk.main()

@@ -1,0 +1,31 @@
+[Added Associations]
+text/html=chromium-browser.desktop;
+text/x-python=idle3.desktop;
+text/plain=leafpad.desktop;
+image/gif=gpicview.desktop;
+image/png=gpicview.desktop;
+image/jpeg=gpicview.desktop;
+image/svg+xml=gpicview.desktop;
+application/x-xz-compressed-tar=xarchiver.desktop;
+application/x-xz=xarchiver.desktop
+application/x-compressed-tar=xarchiver.desktop;
+application/x-gz-compressed-tar=xarchiver.desktop
+application/x-gz=xarchiver.desktop
+application/gzip=xarchiver.desktop
+application/zip=xarchiver.desktop
+
+[Default Applications]
+text/html=chromium-browser.desktop
+text/x-python=idle3.desktop
+text/plain=leafpad.desktop
+image/gif=gpicview.desktop
+image/png=gpicview.desktop
+image/jpeg=gpicview.desktop
+image/svg+xml=gpicview.desktop
+application/x-xz-compressed-tar=xarchiver.desktop
+application/x-xz=xarchiver.desktop
+application/x-compressed-tar=xarchiver.desktop
+application/x-gz-compressed-tar=xarchiver.desktop
+application/x-gz=xarchiver.desktop
+application/gzip=xarchiver.desktop
+application/zip=xarchiver.desktop

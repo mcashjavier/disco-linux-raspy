@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/easy_xml_test.py

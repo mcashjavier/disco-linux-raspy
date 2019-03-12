@@ -1,0 +1,16 @@
+00a20a45f156d4c5b6a2383ad2b3eb63  usr/lib/nodejs/tar/lib/buffer-entry.js
+c05c35d46ef3d545a4f7270f3d55bdd7  usr/lib/nodejs/tar/lib/entry-writer.js
+f4660fa71cb69d1ccbb06cd3e8db0130  usr/lib/nodejs/tar/lib/entry.js
+ba389b4fa513fe593ec4c0ee5fcde6f2  usr/lib/nodejs/tar/lib/extended-header-writer.js
+9a68e3f8429ccd6589f0b18c4a3037da  usr/lib/nodejs/tar/lib/extended-header.js
+1b5a3163d241ad3e14216d954f5ef5d3  usr/lib/nodejs/tar/lib/extract.js
+7c348c69f1d193d72a7b8d5a327665e2  usr/lib/nodejs/tar/lib/global-header-writer.js
+44b14c7ba6b0d18e431a1fed7c0b9152  usr/lib/nodejs/tar/lib/header.js
+b4ad1783befd88080dd87592eee90c7f  usr/lib/nodejs/tar/lib/pack.js
+0f4ef9ac127a8f1c2a08fa6d7c5c862c  usr/lib/nodejs/tar/lib/parse.js
+f9a0ffcc7b185b0b5de24640ed43a92f  usr/lib/nodejs/tar/tar.js
+caa69c18850be78172fb05ca40139a0a  usr/share/doc/node-tar/README.md
+1c1296cc7f33c2b8f64fbfcc573eec89  usr/share/doc/node-tar/changelog.Debian.gz
+b6325efedfa1b8e344c5a75885855ab4  usr/share/doc/node-tar/copyright
+b1b48817ca63a796c8c29b5279de8d1e  usr/share/doc/node-tar/examples/extracter.js
+851b6612632f0ce91705f297eb780982  usr/share/doc/node-tar/examples/reader.js

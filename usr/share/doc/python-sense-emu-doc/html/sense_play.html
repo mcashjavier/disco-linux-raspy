@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sense_play &mdash; Sense-Emu 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Sense-Emu 1.0 documentation" href="index.html" />
+    <link rel="next" title="sense_csv" href="sense_csv.html" />
+    <link rel="prev" title="sense_rec" href="sense_rec.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_csv.html" title="sense_csv"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sense_rec.html" title="sense_rec"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sense-play">
+<span id="id1"></span><h1>sense_play<a class="headerlink" href="#sense-play" title="Permalink to this headline">¶</a></h1>
+<p>Replays readings recorded from a Raspberry Pi Sense HAT, via the Sense HAT
+emulation library.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>sense_play [-h] [--version] [-q] [-v] [-l FILE] [-P] input</pre>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-sense_play-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_play-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_play--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_play--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this program&#8217;s version number and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_play-q">
+<tt class="descname">-q</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_play-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce less console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_play-v">
+<tt class="descname">-v</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--verbose</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_play-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce more console output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_play-l">
+<tt class="descname">-l</tt><tt class="descclassname"> FILE</tt><tt class="descclassname">, </tt><tt class="descname">--log-file</tt><tt class="descclassname"> FILE</tt><a class="headerlink" href="#cmdoption-sense_play-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>log messages to the specified file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sense_play-P">
+<tt class="descname">-P</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--pdb</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-sense_play-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>run under PDB (debug mode)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>To play back an experiment recorded from the Sense HAT, simply execute
+<strong class="program">sense_play</strong> with the filename you wish to play back:</p>
+<div class="highlight-python"><pre>$ sense_play experiment.hat</pre>
+</div>
+<p>Playback will start immediately and continue in real-time (at the recording
+rate) until the file is exhausted. If you wish to start an emulated script
+at the same time as playback, you can use the shell&#8217;s job control facilities:</p>
+<div class="highlight-python"><pre>$ sense_play experiment.hat &amp; python experiment.py</pre>
+</div>
+<p>If <tt class="file docutils literal"><span class="pre">-</span></tt> is specified as the input file, <strong class="program">sense_play</strong> will read
+its from stdin. This can be used to play back compressed recordings (see
+Examples under <strong class="program">sense_rec</strong>) without using any disk space for
+decompression:</p>
+<div class="highlight-python"><pre>$ gunzip -c experiment.hat.gz | sense_play -</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If playback is going too slowly (e.g. because the Pi is too busy with other
+tasks, or because the data cannot be read quickly enough from the SD card),
+<strong class="program">sense_play</strong> will skip records and print a warning to the console
+at the end of playback with the number of records skipped.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sense_play</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sense_rec.html"
+                        title="previous chapter">sense_rec</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sense_csv.html"
+                        title="next chapter">sense_csv</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/sense_play.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sense_csv.html" title="sense_csv"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sense_rec.html" title="sense_rec"
+             >previous</a> |</li>
+        <li><a href="index.html">Sense-Emu 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016 Raspberry Pi Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

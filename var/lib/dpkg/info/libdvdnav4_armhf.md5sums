@@ -1,0 +1,8 @@
+213df065b7318cea43274e1531df8516  usr/lib/arm-linux-gnueabihf/libdvdnav.so.4.1.2
+f9b2950c7ae12dfd1d5133239330e9d3  usr/share/bug/libdvdnav4
+7a049c1c7d283b59176a7afdb9ea73ef  usr/share/doc/libdvdnav4/AUTHORS
+0feeead5a567e4942eef20d3c4d75523  usr/share/doc/libdvdnav4/README
+f78a2919ad121ffbf8dbb285014e64ee  usr/share/doc/libdvdnav4/changelog.Debian.gz
+89f708a7acecbe73195c90564e07ac18  usr/share/doc/libdvdnav4/changelog.gz
+34e9edb6899799aae2c97863ca1eeebe  usr/share/doc/libdvdnav4/copyright
+d6adc9865af43085d9e70f3a972ac43d  usr/share/lintian/overrides/libdvdnav4

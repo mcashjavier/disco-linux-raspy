@@ -1,0 +1,1 @@
+../../../../share/pyshared/gpiozerocli/__init__.py

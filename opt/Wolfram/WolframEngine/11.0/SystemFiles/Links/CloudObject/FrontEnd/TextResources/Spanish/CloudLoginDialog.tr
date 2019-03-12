@@ -1,0 +1,16 @@
+@|
+@|
+@@resource CloudLoginDialogStrings
+{
+"CloudSubheaderText" -> "Inicie sesi\[OAcute]n con su Wolfram ID", 
+"WolframIDLabel" -> "Correo electr\[OAcute]nico", 
+"PasswordLabel" -> "Contrase\[NTilde]a", 
+"ForgotPasswordLabel" -> "\[DownQuestion]Olvid\[OAcute] su contrase\[NTilde]a?",
+"CloudAccountQuery" -> "\[DownQuestion]No tiene un Wolfram ID?", 
+"SignInButtonLabel" -> "Inicie sesi\[OAcute]n",
+"JoinNowButtonLabel" -> "Cree una cuenta", 
+"CancelButtonLabel" -> "Cancelar",
+"RemeberMeLabel" -> "Recordarme",
+"WindowTitle" -> "Inicie sesi\[OAcute]n"
+}
+@|

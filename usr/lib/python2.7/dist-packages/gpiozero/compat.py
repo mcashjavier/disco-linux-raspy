@@ -1,0 +1,1 @@
+../../../../share/pyshared/gpiozero/compat.py

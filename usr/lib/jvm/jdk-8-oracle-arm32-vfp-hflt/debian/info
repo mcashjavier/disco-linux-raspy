@@ -1,0 +1,5 @@
+version="0.60"
+j2se_version="8u65"
+maintainer_name="Debian Java Maintainers"
+maintainer_email="pkg-java-maintainers@lists.alioth.debian.org"
+date="2015/12/10"

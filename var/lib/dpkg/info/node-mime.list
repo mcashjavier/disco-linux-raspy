@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nodejs
+/usr/lib/nodejs/mime.js
+/usr/share
+/usr/share/doc
+/usr/share/doc/node-mime
+/usr/share/doc/node-mime/README.md
+/usr/share/doc/node-mime/changelog.Debian.gz
+/usr/share/doc/node-mime/copyright
+/usr/share/node-mime
+/usr/share/node-mime/mime.types
+/usr/share/node-mime/node.types

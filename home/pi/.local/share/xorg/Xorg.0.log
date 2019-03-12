@@ -1,0 +1,32 @@
+[    93.171] 
+X.Org X Server 1.18.4
+Release Date: 2016-07-19
+[    93.175] X Protocol Version 11, Revision 0
+[    93.176] Build Operating System: Linux 4.4.26-v7+ armv7l Raspbian
+[    93.178] Current Operating System: Linux raspberrypi 4.9.24+ #993 Wed Apr 26 17:56:54 BST 2017 armv6l
+[    93.180] Kernel command line: 8250.nr_uarts=1 bcm2708_fb.fbwidth=640 bcm2708_fb.fbheight=480 bcm2708_fb.fbswap=1 smsc95xx.macaddr=B8:27:EB:DF:93:02 vc_mem.mem_base=0x1ec00000 vc_mem.mem_size=0x20000000  dwc_otg.lpm_enable=0 console=tty1 console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait fbcon=map:10 fbcon=font:ProFont6x11 logo.nologo
+[    93.189] Build Date: 11 November 2016  11:59:59AM
+[    93.192] xorg-server 2:1.18.4-2+rpi1 (https://www.debian.org/support) 
+[    93.194] Current version of pixman: 0.33.3
+[    93.196] 	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+[    93.197] Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    93.211] (==) Log file: "/home/pi/.local/share/xorg/Xorg.0.log", Time: Wed May 10 18:45:38 2017
+[    93.214] (==) Using config directory: "/etc/X11/xorg.conf.d"
+[    93.218] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[    93.223] Parse error on line 3 of section InputClass in file /etc/X11/xorg.conf.d/99-calibration.conf
+	"MatchProduct"ADS7846" is not a valid keyword in this section.
+[    93.226] (EE) Problem parsing the config file
+[    93.227] (EE) Error parsing the config file
+[    93.227] (EE) 
+Fatal server error:
+[    93.230] (EE) no screens found(EE) 
+[    93.232] (EE) 
+Please consult the The X.Org Foundation support 
+	 at http://wiki.x.org
+ for help. 
+[    93.238] (EE) Please also check the log file at "/home/pi/.local/share/xorg/Xorg.0.log" for additional information.
+[    93.242] (EE) 
+[    93.244] (EE) Server terminated with error (1). Closing log file.

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<gconfschemafile>
+ <schemalist>
+  <schema>
+   <key>/schemas/desktop/gnome/url-handlers/vnclicenseserver/enabled</key>
+   <applyto>/desktop/gnome/url-handlers/vnclicenseserver/enabled</applyto>
+   <owner>vnclicenseserver</owner>
+   <type>bool</type>
+   <default>true</default>
+   <locale name="C">
+    <short>Set to true to enable handling of vnclicenseserver:// URLs</short>
+   </locale>
+  </schema>
+  <schema>
+   <key>/schemas/desktop/gnome/url-handlers/vnclicenseserver/command</key>
+   <applyto>/desktop/gnome/url-handlers/vnclicenseserver/command</applyto>
+   <owner>vnclicenseserver</owner>
+   <type>string</type>
+   <default>/usr/local/bin/vnclicensewiz %s</default>
+   <locale name="C" />
+  </schema>
+  <schema>
+   <key>/schemas/desktop/gnome/url-handlers/vnclicenseserver/need-terminal</key>
+   <applyto>/desktop/gnome/url-handlers/vnclicenseserver/need-terminal</applyto>
+   <owner>vnclicenseserver</owner>
+   <type>bool</type>
+   <default>false</default>
+   <locale name="C" />
+  </schema>
+ </schemalist>
+</gconfschemafile>

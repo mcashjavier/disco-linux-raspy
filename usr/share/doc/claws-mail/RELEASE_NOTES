@@ -1,0 +1,34 @@
+27th October 2014                                   Claws Mail 3.11.1
+
+		    CLAWS MAIL  RELEASE NOTES
+                    http://www.claws-mail.org
+
+Claws Mail is a GTK+ based, user-friendly, lightweight, and fast 
+email client.
+
+New in this release:
+~~~~~~~~~~~~~~~~~~~~
+
+* Use 'gnutls_priority' hidden account preference for POP3 and
+  STARTTLS connections, in addition to SMTP.
+
+* RSSyl plugin: Enable use of .netrc to store network credentials.
+
+* Remove dependency on intltool.
+
+* Remove appdata.
+
+* Updated translations: Norwegian Bokmål.
+
+* Bug fixes:
+	o bug 3306, 'HTML tag </b> is not always rendered in error
+		     dialog'
+	o bug 3308, 'build ignores --localedir'
+
+For further details of the numbered bugs and RFEs listed above
+consult http://www.thewildbeast.co.uk/claws-mail/bugzilla/
+
+---------------------------------------------------------------------
+See ChangeLog for full information regarding changes in this release.
+
+	

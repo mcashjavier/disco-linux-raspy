@@ -1,0 +1,1 @@
+../../../../../share/pyshared/gyp/generator/ninja_test.py

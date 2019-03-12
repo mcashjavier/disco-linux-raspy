@@ -1,0 +1,1 @@
+../../../../../share/pyshared/gyp/generator/dump_dependency_json.py

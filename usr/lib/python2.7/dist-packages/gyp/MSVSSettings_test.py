@@ -1,0 +1,1 @@
+../../../../share/pyshared/gyp/MSVSSettings_test.py

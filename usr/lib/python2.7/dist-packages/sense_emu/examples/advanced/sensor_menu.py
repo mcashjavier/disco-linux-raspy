@@ -1,0 +1,1 @@
+../../../../../../share/pyshared/sense_emu/examples/advanced/sensor_menu.py
